@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluer{% endblock %}
+
+{% block body %}
+    <h1>Evaluer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evaluer.id }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ evaluer.Note }}</td>
+            </tr>
+            <tr>
+                <th>Conclusion</th>
+                <td>{{ evaluer.conclusion }}</td>
+            </tr>
+            <tr>
+                <th>Action</th>
+                <td>{{ evaluer.Action }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('evaluer_index') }}">back to list</a>
+
+    <a href="{{ path('evaluer_edit', {'id': evaluer.id}) }}">edit</a>
+
+    {{ include('evaluer/_delete_form.html.twig') }}
+{% endblock %}

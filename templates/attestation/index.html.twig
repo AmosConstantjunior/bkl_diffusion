@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Attestation index{% endblock %}
+
+{% block body %}
+
+    <h1>Attestation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>TotalPoints</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attestation in attestations %}
+            <tr>
+                <td>{{ attestation.id }}</td>
+                <td>{{ attestation.Date ? attestation.Date|date('Y-m-d') : '' }}</td>
+                <td>{{ attestation.TotalPoints }}</td>
+                <td>
+                    <a href="{{ path('attestation_show', {'id': attestation.id}) }}">show</a>
+                    <a href="{{ path('attestation_edit', {'id': attestation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('attestation_new') }}">Create new</a>
+  
+{% endblock %}

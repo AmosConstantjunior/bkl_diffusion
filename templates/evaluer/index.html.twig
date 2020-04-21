@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluer index{% endblock %}
+
+{% block body %}
+    <h1>Evaluer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Note</th>
+                <th>Conclusion</th>
+                <th>Action</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evaluer in evaluers %}
+            <tr>
+                <td>{{ evaluer.id }}</td>
+                <td>{{ evaluer.Note }}</td>
+                <td>{{ evaluer.conclusion }}</td>
+                <td>{{ evaluer.Action }}</td>
+                <td>
+                    <a href="{{ path('evaluer_show', {'id': evaluer.id}) }}">show</a>
+                    <a href="{{ path('evaluer_edit', {'id': evaluer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('evaluer_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FicheVisite{% endblock %}
+
+{% block body %}
+    <h1>Create new FicheVisite</h1>
+
+    {{ include('fiche_visite/_form.html.twig') }}
+<a href="{{ path('machine_index')}}">Nouvelle machine</a>
+    <a href="{{ path('fiche_visite_index') }}">back to list</a>
+
+{% endblock %}

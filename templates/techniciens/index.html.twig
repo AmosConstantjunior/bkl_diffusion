@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Techniciens index{% endblock %}
+
+{% block body %}
+    <h1>Techniciens index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>NomTechnicien</th>
+                <th>PrenomTechnicien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for technicien in techniciens %}
+            <tr>
+                <td>{{ technicien.id }}</td>
+                <td>{{ technicien.email }}</td>
+                <td>{{ technicien.roles ? technicien.roles|json_encode : '' }}</td>
+                <td>{{ technicien.password }}</td>
+                <td>{{ technicien.NomTechnicien }}</td>
+                <td>{{ technicien.PrenomTechnicien }}</td>
+                <td>
+                    <a href="{{ path('techniciens_show', {'id': technicien.id}) }}">show</a>
+                    <a href="{{ path('techniciens_edit', {'id': technicien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('techniciens_new') }}">Create new</a>
+{% endblock %}

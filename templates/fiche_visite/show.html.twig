@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FicheVisite{% endblock %}
+
+{% block body %}
+<main>
+    <h1>FicheVisite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fiche_visite.id }}</td>
+            </tr>
+            <tr>
+                <th>DateIntervention</th>
+                <td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MontantHt</th>
+                <td>{{ fiche_visite.MontantHt }}</td>
+            </tr>
+            <tr>
+                <th>MontantConsommable</th>
+                <td>{{ fiche_visite.MontantConsommable }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ fiche_visite.Commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('fiche_visite_index') }}">back to list</a>
+
+    <a href="{{ path('fiche_visite_edit', {'id': fiche_visite.id}) }}">edit</a>
+
+    {{ include('fiche_visite/_delete_form.html.twig') }}
+    </main>
+{% endblock %}
