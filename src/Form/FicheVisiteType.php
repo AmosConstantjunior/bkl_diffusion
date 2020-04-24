@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\FicheVisite;
+use App\Entity\Machine;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,14 +14,13 @@ class FicheVisiteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('DateIntervention')
+            ->add("DateIntervention")
             ->add('MontantHt')
             ->add('MontantConsommable')
             ->add('Commentaire')
             ->add('lier')
             ->add('techniciens')
-            ->add('machines')
-        ;
+            ->add('machines');
     }
 
     public function configureOptions(OptionsResolver $resolver)

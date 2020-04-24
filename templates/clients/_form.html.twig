@@ -1,4 +1,38 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section id='inscriptionC' class="container-fluid">
+
+
+	{{ form_start(form) }}
+	{# {{ form_widget(form) }} #}
+	<div class="form-group">
+		{{form_label(form.NomClient, 'Nom')}}
+		{{form_widget(form.NomClient, {'attr':{'class':'form-control', 'placeholder':'veuillez saisir le nom du Client'}})}}
+	</div>
+	<div class="form-group">
+		{{form_label(form.email, 'Adresse e-mail')}}
+		{{form_widget(form.email, {'attr':{'class':'form-control', 'placeholder':"veuillez saisir l'adresse e-mail "}})}}
+	</div>
+	<div class="form-group">
+         {{ form_label(form.plainPassword, 'Mot de passe')}}
+		{{form_widget(form.plainPassword, {'attr':{'class':'form-control', 'placeholder':'veuillez saisir le mot de passe '}})}}
+	</div>
+	<div class="form-group">
+		{{form_label(form.AdresseClient, 'N° et nom de la rue')}}
+		{{form_widget(form.AdresseClient, {'attr':{'class':'form-control', 'placeholder':"veuillez saisir le n° et le nom de la rue svp"}})}}
+	</div>
+	<div class="form-group">
+		{{form_row(form.ville, {'attr':{'class':'form-control', 'placeholder':'@Email'}})}}
+	</div>
+    <div class="form-group">
+		{{form_label(form.TelClient, 'Numéro de téléphone')}}
+		{{form_widget(form.TelClient, {'attr':{'class':'form-control', 'placeholder':'veuillez saisir le numéro de téléphone'}})}}
+	</div>
+	<div class="form-group">
+		{{form_label(form.NumSiret, 'Numéro de siret')}}
+		{{form_widget(form.NumSiret, {'attr':{'class':'form-control', 'placeholder':' veuillez saisir le numéro de siret'}})}}
+	</div>
+	
+
+	<button class="btn btn-success">{{ button_label|default('✅ Valider') }}</button>
+
+	{{ form_end(form) }}
+</section>

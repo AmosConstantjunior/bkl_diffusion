@@ -35,6 +35,7 @@ class FicheVisiteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // dd($ficheVisite->getMachines());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ficheVisite);
             $entityManager->flush();

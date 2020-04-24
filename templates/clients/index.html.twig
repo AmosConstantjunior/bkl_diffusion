@@ -1,73 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Clients index{% endblock %}
+{% block title %}Clients index
+{% endblock %}
 
 {% block body %}
-    <h3 id="la"> <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M35 21.2918C35 22.1668 33.25 22.7502 31.2083 23.0418C29.8958 20.5627 27.2708 18.6668 24.2083 17.3543C24.5 16.9168 24.7917 16.6252 25.0833 16.1877H26.25C30.7708 16.0418 35 18.8127 35 21.2918ZM9.91667 16.0418H8.75C4.22917 16.0418 0 18.8127 0 21.2918C0 22.1668 1.75 22.7502 3.79167 23.0418C5.10417 20.5627 7.72917 18.6668 10.7917 17.3543L9.91667 16.0418ZM17.5 17.5002C20.7083 17.5002 23.3333 14.8752 23.3333 11.6668C23.3333 8.4585 20.7083 5.8335 17.5 5.8335C14.2917 5.8335 11.6667 8.4585 11.6667 11.6668C11.6667 14.8752 14.2917 17.5002 17.5 17.5002ZM17.5 18.9585C11.5208 18.9585 5.83333 22.7502 5.83333 26.2502C5.83333 29.1668 17.5 29.1668 17.5 29.1668C17.5 29.1668 29.1667 29.1668 29.1667 26.2502C29.1667 22.7502 23.4792 18.9585 17.5 18.9585ZM25.8125 14.5835H26.25C28.7292 14.5835 30.625 12.6877 30.625 10.2085C30.625 7.72933 28.7292 5.8335 26.25 5.8335C25.5208 5.8335 24.9375 5.97933 24.3542 6.271C25.5208 7.72933 26.25 9.62516 26.25 11.6668C26.25 12.6877 26.1042 13.7085 25.8125 14.5835ZM8.75 14.5835H9.1875C8.89583 13.7085 8.75 12.6877 8.75 11.6668C8.75 9.62516 9.47917 7.72933 10.6458 6.271C10.0625 5.97933 9.47917 5.8335 8.75 5.8335C6.27083 5.8335 4.375 7.72933 4.375 10.2085C4.375 12.6877 6.27083 14.5835 8.75 14.5835Z" fill="black"/>
-</svg>
-Liste des Clients</h3>
+	<h3 id="la">
+		<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M35 21.2918C35 22.1668 33.25 22.7502 31.2083 23.0418C29.8958 20.5627 27.2708 18.6668 24.2083 17.3543C24.5 16.9168 24.7917 16.6252 25.0833 16.1877H26.25C30.7708 16.0418 35 18.8127 35 21.2918ZM9.91667 16.0418H8.75C4.22917 16.0418 0 18.8127 0 21.2918C0 22.1668 1.75 22.7502 3.79167 23.0418C5.10417 20.5627 7.72917 18.6668 10.7917 17.3543L9.91667 16.0418ZM17.5 17.5002C20.7083 17.5002 23.3333 14.8752 23.3333 11.6668C23.3333 8.4585 20.7083 5.8335 17.5 5.8335C14.2917 5.8335 11.6667 8.4585 11.6667 11.6668C11.6667 14.8752 14.2917 17.5002 17.5 17.5002ZM17.5 18.9585C11.5208 18.9585 5.83333 22.7502 5.83333 26.2502C5.83333 29.1668 17.5 29.1668 17.5 29.1668C17.5 29.1668 29.1667 29.1668 29.1667 26.2502C29.1667 22.7502 23.4792 18.9585 17.5 18.9585ZM25.8125 14.5835H26.25C28.7292 14.5835 30.625 12.6877 30.625 10.2085C30.625 7.72933 28.7292 5.8335 26.25 5.8335C25.5208 5.8335 24.9375 5.97933 24.3542 6.271C25.5208 7.72933 26.25 9.62516 26.25 11.6668C26.25 12.6877 26.1042 13.7085 25.8125 14.5835ZM8.75 14.5835H9.1875C8.89583 13.7085 8.75 12.6877 8.75 11.6668C8.75 9.62516 9.47917 7.72933 10.6458 6.271C10.0625 5.97933 9.47917 5.8335 8.75 5.8335C6.27083 5.8335 4.375 7.72933 4.375 10.2085C4.375 12.6877 6.27083 14.5835 8.75 14.5835Z" fill="black"/>
+		</svg>
+		Liste des Clients</h3>
 
 
-    <a id="ajouter" href="{{ path('clients_new') }}"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0)">
-<path d="M24.25 29.5V26.6667C24.25 25.1638 23.653 23.7224 22.5903 22.6597C21.5276 21.597 20.0862 21 18.5833 21H8.66667C7.16377 21 5.72243 21.597 4.65973 22.6597C3.59702 23.7224 3 25.1638 3 26.6667V29.5" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13.6667 15.3333C16.7963 15.3333 19.3333 12.7963 19.3333 9.66667C19.3333 6.53705 16.7963 4 13.6667 4C10.5371 4 8 6.53705 8 9.66667C8 12.7963 10.5371 15.3333 13.6667 15.3333Z" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28.334 11.3335V19.8335" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M32.584 15.5835H24.084" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0">
-<rect width="34" height="34" fill="white"/>
-</clipPath>
-</defs>
-</svg>
-Create new</a>
+	<a id="ajouter" href="{{ path('clients_new') }}">
+		<svg width="34" height="34" viewbox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g clip-path="url(#clip0)">
+				<path d="M24.25 29.5V26.6667C24.25 25.1638 23.653 23.7224 22.5903 22.6597C21.5276 21.597 20.0862 21 18.5833 21H8.66667C7.16377 21 5.72243 21.597 4.65973 22.6597C3.59702 23.7224 3 25.1638 3 26.6667V29.5" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+				<path d="M13.6667 15.3333C16.7963 15.3333 19.3333 12.7963 19.3333 9.66667C19.3333 6.53705 16.7963 4 13.6667 4C10.5371 4 8 6.53705 8 9.66667C8 12.7963 10.5371 15.3333 13.6667 15.3333Z" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+				<path d="M28.334 11.3335V19.8335" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+				<path d="M32.584 15.5835H24.084" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+			</g>
+			<defs>
+				<clipPath id="clip0">
+					<rect width="34" height="34" fill="white"/>
+				</clipPath>
+			</defs>
+		</svg>
+		Nouveau client</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>NomClient</th>
-                <th>Email</th>
-                <th>AdresseClient</th>
-                <th>NumSiret</th>
-                <th>TelClient</th>
-                <th>Ateliers</th>
-                <th>Total points</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td>{{ client.NomClient }}</td>
-                <td>{{ client.email }}</td>
-                {# <td>{{ client.roles ? client.roles|json_encode : '' }}</td> #}
+	<table id="liste" class="table table-striped">
+		<thead>
+			<tr>
+            <th scope="col">Id</th>
+				<th scope="col">Nom du client</th>
+				<th scope="col">Adresse email</th>
+				<th scope="col">Adresse postale</th>
+				<th scope="col">Numero de Siret</th>
+				<th scope="col">Téléphone du Client</th>
+				<th scope="col"> Nom des Ateliers</th>
+                
+				<th scope="col">Note CQS</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for client in clients %}
+				<tr>
+					<th scope="row">{{ client.id}}</th>
+					<td>{{ client.NomClient }}</td>
+					<td>{{ client.email }}</td>
+					{# <td>{{ client.roles ? client.roles|json_encode : '' }}</td> #}
 
-                <td>{{ client.AdresseClient }}</td>
-                <td>{{ client.NumSiret }}</td>
-                <td>{{ client.TelClient }}</td>
-                {% for atelier in client.ateliers %}
-                    <td>{{ atelier.NomCarrosserie}}</td>
-                     {% for attestation in atelier.attester  %}
-                        <td> {{ attestation.TotalPoints}} %</td>
-                    {% endfor %} 
-                {% endfor %}
-                <td>
-                    <a href="{{ path('clients_show', {'id': client.id}) }}"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 11.25C14.0075 11.2566 13.0574 11.6537 12.3556 12.3556C11.6537 13.0574 11.2566 14.0075 11.25 15C11.25 17.0525 12.9475 18.75 15 18.75C17.0513 18.75 18.75 17.0525 18.75 15C18.75 12.9487 17.0513 11.25 15 11.25Z" fill="black"/>
-<path d="M15.0001 6.25C5.45887 6.25 2.59137 14.5213 2.56512 14.605L2.43262 15L2.56387 15.395C2.59137 15.4787 5.45887 23.75 15.0001 23.75C24.5414 23.75 27.4089 15.4787 27.4351 15.395L27.5676 15L27.4364 14.605C27.4089 14.5213 24.5414 6.25 15.0001 6.25ZM15.0001 21.25C8.31137 21.25 5.72012 16.4425 5.09262 15C5.72262 13.5525 8.31512 8.75 15.0001 8.75C21.6889 8.75 24.2801 13.5575 24.9076 15C24.2776 16.4475 21.6851 21.25 15.0001 21.25V21.25Z" fill="black"/>
-</svg>
-</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+					<td>{{ client.AdresseClient }}</td>
+					<td>{{ client.NumSiret }}</td>
+					<td>{{ client.TelClient }}</td>
+					{% for atelier in client.ateliers %}
+						<td>{{ atelier.NomCarrosserie}}</td>
+						{% for attestation in atelier.attester  %}
+							<td>
+								{{ attestation.TotalPoints}}
+								%</td>
+						{% else %}
+							<td>-·-</td>
+						{% endfor %}
+                        {% else %}
+                            <td>-·-</td> 
+                            <td>-·-</td>
+					{% endfor %}
+					<td>
+						<a href="{{ path('clients_show', {'id': client.id}) }}">
+							<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15 11.25C14.0075 11.2566 13.0574 11.6537 12.3556 12.3556C11.6537 13.0574 11.2566 14.0075 11.25 15C11.25 17.0525 12.9475 18.75 15 18.75C17.0513 18.75 18.75 17.0525 18.75 15C18.75 12.9487 17.0513 11.25 15 11.25Z" fill="black"/>
+								<path d="M15.0001 6.25C5.45887 6.25 2.59137 14.5213 2.56512 14.605L2.43262 15L2.56387 15.395C2.59137 15.4787 5.45887 23.75 15.0001 23.75C24.5414 23.75 27.4089 15.4787 27.4351 15.395L27.5676 15L27.4364 14.605C27.4089 14.5213 24.5414 6.25 15.0001 6.25ZM15.0001 21.25C8.31137 21.25 5.72012 16.4425 5.09262 15C5.72262 13.5525 8.31512 8.75 15.0001 8.75C21.6889 8.75 24.2801 13.5575 24.9076 15C24.2776 16.4475 21.6851 21.25 15.0001 21.25V21.25Z" fill="black"/>
+							</svg>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    
+
 {% endblock %}

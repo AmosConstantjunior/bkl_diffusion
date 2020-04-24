@@ -38,6 +38,11 @@ class Ville
      */
     private $lieu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Zone", inversedBy="zoner")
+     */
+    private $zone;
+
     public function __construct()
     {
         $this->resident = new ArrayCollection();
@@ -138,5 +143,17 @@ class Ville
     public function __toString()
     {
         return $this->NomVille;
+    }
+
+    public function getZone(): ?Zone
+    {
+        return $this->zone;
+    }
+
+    public function setZone(?Zone $zone): self
+    {
+        $this->zone = $zone;
+
+        return $this;
     }
 }

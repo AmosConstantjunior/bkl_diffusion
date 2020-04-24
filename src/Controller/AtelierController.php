@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Atelier;
-use App\Form\AtelierType;
+use App\Form\Atelier1Type;
 use App\Repository\AtelierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class AtelierController extends AbstractController
     public function new(Request $request): Response
     {
         $atelier = new Atelier();
-        $form = $this->createForm(AtelierType::class, $atelier);
+        $form = $this->createForm(Atelier1Type::class, $atelier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class AtelierController extends AbstractController
      */
     public function edit(Request $request, Atelier $atelier): Response
     {
-        $form = $this->createForm(AtelierType::class, $atelier);
+        $form = $this->createForm(Atelier1Type::class, $atelier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

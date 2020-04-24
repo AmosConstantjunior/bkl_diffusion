@@ -3,28 +3,29 @@
 {% block title %}Atelier index{% endblock %}
 
 {% block body %}
-
     <h1>Atelier index</h1>
 
-    <table class="table">
+    <table id="liste" class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>AdresseAtelier</th>
-                <th>EmailAdresse</th>
-                <th>NomCarrosserie</th>
-                <th>Certifier</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">AdresseAtelier</th>
+                <th scope="col">EmailAdresse</th>
+                <th scope="col">NomCarrosserie</th>
+                <th scope="col">Certifier</th>
+                <th scope="col">AttesterCQS</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for atelier in ateliers %}
             <tr>
-                <td>{{ atelier.id }}</td>
+                <td scope="row">{{ atelier.id }}</td>
                 <td>{{ atelier.AdresseAtelier }}</td>
                 <td>{{ atelier.EmailAdresse }}</td>
                 <td>{{ atelier.NomCarrosserie }}</td>
                 <td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
+                <td>{{ atelier.attesterCQS ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('atelier_show', {'id': atelier.id}) }}">show</a>
                     <a href="{{ path('atelier_edit', {'id': atelier.id}) }}">edit</a>
@@ -32,12 +33,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <a href="{{ path('atelier_new') }}">Create new</a>
-   
 {% endblock %}

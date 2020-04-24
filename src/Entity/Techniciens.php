@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use App\Entity\FicheVisite;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -68,6 +70,10 @@ class Techniciens extends User
 
         return $this;
     }
+    // public function setRoles(array $roles): \App\Entity\User
+    // {
+        
+    // }
 
     /**
      * @return Collection|FicheVisite[]

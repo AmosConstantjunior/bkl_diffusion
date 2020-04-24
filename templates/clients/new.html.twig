@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Clients{% endblock %}
+{% block title %}New Clients
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Clients</h1>
+	
 
-    {{ include('clients/_form.html.twig') }}
+			<h1 id="new">Nouveau Client</h1>
+	
 
-    <a href="{{ path('clients_index') }}">back to list</a>
+		{{ include('clients/_form.html.twig') }}
+		<button class="btn btn-danger"><a href="{{ path('clients_index') }}">❌ Annuler</a></button>
+
+
+
 {% endblock %}

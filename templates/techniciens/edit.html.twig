@@ -3,11 +3,11 @@
 {% block title %}Edit Techniciens{% endblock %}
 
 {% block body %}
-    <h1>Edit Techniciens</h1>
+    <h1 id="tech">Modifier technicien</h1>
 
-    {{ include('techniciens/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('techniciens/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('techniciens_index') }}">back to list</a>
+    <a href="{{ path('techniciens_index') }}">Retour</a>
 
     {{ include('techniciens/_delete_form.html.twig') }}
 {% endblock %}

@@ -42,7 +42,11 @@ class TechniciensController extends AbstractController
                 $technicien,
                 $form->get('plainPassword')->getData()
             )
+            
         );
+        $technicien->setRoles[
+            'ROLE_TECHNICIEN'
+        ];
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($technicien);
             $entityManager->flush();

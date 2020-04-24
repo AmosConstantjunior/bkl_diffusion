@@ -1,4 +1,44 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section id="inscriptionF" class="container">
+
+
+	{{ form_start(form) }}
+	{# {{ form_widget(form) }} #}
+	<div class="form-group">
+		{{ form_label(form.DateIntervention, "Date d'intervention")}}
+
+
+ {{ form_widget(form.DateIntervention, {'attr':{'class':'form-control'}})}}
+		{# <input type='text' class="form-control" /> #}
+		
+
+		</div>
+
+
+	</div>
+	<div id="selection0" class="form-group">
+	<div class="selection">
+		{{ form_row(form.machines, {'attr':{'class':'form-control', 'placeholder':'@Email'}})}}
+	</div>
+	<div class="selection1">
+	
+		{{ form_row(form.techniciens, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
+	</div>
+	<div class="selection2">
+	
+		{{ form_label(form.lier, 'Contact')}}
+		{{ form_widget(form.lier, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
+	</div>
+	</div>
+	<div class="form-group">
+		{{ form_row(form.Commentaire, {'attr':{'class':'form-control', 'placeholder':'Commentatire'}})}}
+	</div>
+	<div class="form-group">
+		{{ form_row(form.MontantHt, {'attr':{'class':'form-control', 'placeholder':'Montant HT €'}})}}
+	</div>
+	<div class="form-group">
+		{{ form_row(form.MontantConsommable, {'attr':{'class':'form-control', 'placeholder':'Montant Consommable €'}})}}
+	</div>
+
+	<button class="btn  btn-success">{{ button_label|default('Sauvegarder') }}</button>
+
+	{{ form_end(form) }}</section>

@@ -5,14 +5,13 @@
 
 {% block body %}
 	<a id="sorti" href="{{ path('clients_index') }}">
-	<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.4828 26.25L13.2812 20L19.4828 13.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.1426 20H26.7184" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M35 20C35 11.7188 28.2812 5 20 5C11.7188 5 5 11.7188 5 20C5 28.2812 11.7188 35 20 35C28.2812 35 35 28.2812 35 20Z" stroke="white" stroke-width="3" stroke-miterlimit="10"/>
-</svg>
+		<svg width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M19.4828 26.25L13.2812 20L19.4828 13.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M14.1426 20H26.7184" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M35 20C35 11.7188 28.2812 5 20 5C11.7188 5 5 11.7188 5 20C5 28.2812 11.7188 35 20 35C28.2812 35 35 28.2812 35 20Z" stroke="white" stroke-width="3" stroke-miterlimit="10"/>
+		</svg>
 
 	</a>
-
 
 	<div id="tab" class="container-fluid mt-3">
 		<h1>{{ client.NomClient}}</h1>
@@ -52,21 +51,78 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div id="home" class="container tab-pane active"><br>
+				<a href="">Ajouter une fiche de maintenance</a>
+				<table id="historiqueC" class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Date  Intervention</th>
+							<th scope="col">Machine</th>
+							<th scope="col">Nom du technicien</th>
+							<th scope="col">Nom du Contact</th>
+							<th scope="col">actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
 
+
+						<tr>
+
+							<td colspan="6">no records found</td>
+						</tr>
+
+					</tbody>
+				</table>
 			</div>
 			<div id="menu1" class="container tab-pane fade"><br>
 				<section>
 
-					<h3>Vos Ateliers</h3>
+					<h4>Vos Ateliers</h4>
+					<a id="atelie" href="{{ path('atelier_new')}}">
+						<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M15 8.75C14.3125 8.75 13.75 9.3125 13.75 10V13.75H10C9.3125 13.75 8.75 14.3125 8.75 15C8.75 15.6875 9.3125 16.25 10 16.25H13.75V20C13.75 20.6875 14.3125 21.25 15 21.25C15.6875 21.25 16.25 20.6875 16.25 20V16.25H20C20.6875 16.25 21.25 15.6875 21.25 15C21.25 14.3125 20.6875 13.75 20 13.75H16.25V10C16.25 9.3125 15.6875 8.75 15 8.75ZM15 2.5C8.1 2.5 2.5 8.1 2.5 15C2.5 21.9 8.1 27.5 15 27.5C21.9 27.5 27.5 21.9 27.5 15C27.5 8.1 21.9 2.5 15 2.5ZM15 25C9.4875 25 5 20.5125 5 15C5 9.4875 9.4875 5 15 5C20.5125 5 25 9.4875 25 15C25 20.5125 20.5125 25 15 25Z" fill="black"/>
+						</svg>
+						Ajouter Atelier</a>
 					{% for atelier in client.ateliers %}
-						<p>{{ atelier.NomCarrosserie }}</p>
-						<p>{{ atelier.ville }}</p>
-						{% for attestation in atelier.attester %}
-							<p>{{ attestation.TotalPoints}}
-								%</p>
-						{% endfor %}
+						<table id="listeAtelier" class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">Nom d'atelier</th>
+									<th scope="col">Adresse</th>
+									<th scope="col">Ville</th>
+									<th scope="col">Code postal</th>
+									<th scope="col">Point total du dernier certificat</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+
+									<td>{{ atelier.NomCarrosserie }}</td>
+									<td>{{ atelier.AdresseAtelier }}</td>
+									<td>{{ atelier.ville }}</td>
+									<td>{{ atelier.ville.CpVille }}</td>
+									{% for attestation in atelier.attester %}
+										<td>
+											{{ attestation.TotalPoints}}
+											%</td>
+									{% else %}
+										<td>-·-</td>
+									{% endfor %}
+									<td>
+										<a href="{{ path('atelier_show', {'id': atelier.id}) }}">
+											<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M15 11.25C14.0075 11.2566 13.0574 11.6537 12.3556 12.3556C11.6537 13.0574 11.2566 14.0075 11.25 15C11.25 17.0525 12.9475 18.75 15 18.75C17.0512 18.75 18.75 17.0525 18.75 15C18.75 12.9488 17.0512 11.25 15 11.25Z" fill="black"/>
+												<path d="M15.0001 6.25C5.45887 6.25 2.59137 14.5212 2.56512 14.605L2.43262 15L2.56387 15.395C2.59137 15.4788 5.45887 23.75 15.0001 23.75C24.5414 23.75 27.4089 15.4788 27.4351 15.395L27.5676 15L27.4364 14.605C27.4089 14.5212 24.5414 6.25 15.0001 6.25ZM15.0001 21.25C8.31137 21.25 5.72012 16.4425 5.09262 15C5.72262 13.5525 8.31512 8.75 15.0001 8.75C21.6889 8.75 24.2801 13.5575 24.9076 15C24.2776 16.4475 21.6851 21.25 15.0001 21.25Z" fill="black"/>
+											</svg>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					{% endfor %}
-					<a href="{{ path('atelier_new')}}">Ajouter Atelier</a>
+
 				</section>
 			</div>
 			<div id="menu2" class="container tab-pane fade"><br>
@@ -74,7 +130,7 @@
 					<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M2.91699 24.7916V29.1666H14.5837V26.4103H5.68783V24.7916C5.68783 23.8583 10.2524 21.7291 14.5837 21.7291C15.9837 21.7437 17.3691 21.9333 18.7107 22.2833L20.9274 20.0666C18.8857 19.3812 16.7712 19.002 14.5837 18.9583C10.6899 18.9583 2.91699 20.8978 2.91699 24.7916ZM14.5837 5.83325C11.3607 5.83325 8.75033 8.44367 8.75033 11.6666C8.75033 14.8895 11.3607 17.4999 14.5837 17.4999C17.8066 17.4999 20.417 14.8895 20.417 11.6666C20.417 8.44367 17.8066 5.83325 14.5837 5.83325ZM14.5837 14.5833C12.9795 14.5833 11.667 13.2853 11.667 11.6666C11.667 10.0478 12.9795 8.74992 14.5837 8.74992C16.1878 8.74992 17.5003 10.0624 17.5003 11.6666C17.5003 13.2708 16.2024 14.5833 14.5837 14.5833ZM31.6462 19.4687L30.1878 20.927L27.1982 18.0103L28.6566 16.552C28.8065 16.405 29.0081 16.3227 29.218 16.3227C29.428 16.3227 29.6296 16.405 29.7795 16.552L31.6462 18.4187C31.9524 18.7249 31.9524 19.2353 31.6462 19.5416V19.4687ZM17.5003 27.6208L26.3378 18.7833L29.3274 21.6999L20.5774 30.552H17.5003V27.6208Z" fill="black"/>
 					</svg>
-					Edit</a>
+					Editer</a>
 
 
 				<section class="donnees">
@@ -83,7 +139,7 @@
 						<tbody>
 
 							<tr>
-								<th>Nom Client</th>
+								<th>Nom du client</th>
 								<td>{{ client.NomClient }}</td>
 							</tr>
 							<tr>
@@ -92,7 +148,7 @@
 							</tr>
 
 							<tr>
-								<th>Adresse Client</th>
+								<th>Adresse du client</th>
 								<td>{{ client.AdresseClient }}</td>
 							</tr>
 							<tr>
@@ -103,11 +159,11 @@
 
 							</tr>
 							<tr>
-								<th>Numero Siret</th>
+								<th>Numero de Siret</th>
 								<td>{{ client.NumSiret }}</td>
 							</tr>
 							<tr>
-								<th>Téléphone Client</th>
+								<th>Téléphone client</th>
 								<td>{{ client.TelClient }}</td>
 							</tr>
 

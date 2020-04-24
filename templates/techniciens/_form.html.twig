@@ -1,4 +1,21 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container-fluid">
+	{{ form_start(form) }}
+	{# {{ form_widget(form) }} #}
+    <div class="form-group">
+    {{form_label(form.NomTechnicien, 'Nom')}}
+    {{form_widget(form.NomTechnicien, {"attr":{'class':'form-control', 'placeholder':'Nom du technicien'}})}}
+    </div>
+    <div class="form-group">
+    {{ form_label(form.PrenomTechnicien, 'Prenom')}}
+    {{ form_widget(form.PrenomTechnicien, {"attr":{'class':'form-control', 'placeholder':'Prenom du technicien'}})}}
+    </div>
+    <div class="form-group">
+    
+	{{ form_row(form.email, {"attr":{'class':'form-control', 'placeholder':'Adresse e-mail du technicien'}})}}
+    </div>
+    <div class="form-group">
+    {{form_row(form.plainPassword, {"attr":{'class':'form-control', 'placeholder':'Mot de passe'}})}}
+    </div>
+	<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+</div>

@@ -114,4 +114,9 @@ class Attestation
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->Intituler;
+    }
 }

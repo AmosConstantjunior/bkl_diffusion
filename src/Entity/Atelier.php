@@ -74,6 +74,11 @@ class Atelier
      */
     private $clients;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $attesterCQS;
+
     public function __construct()
     {
         $this->attester = new ArrayCollection();
@@ -297,6 +302,18 @@ class Atelier
     public function setClients(?Clients $clients): self
     {
         $this->clients = $clients;
+
+        return $this;
+    }
+
+    public function getAttesterCQS(): ?bool
+    {
+        return $this->attesterCQS;
+    }
+
+    public function setAttesterCQS(bool $attesterCQS): self
+    {
+        $this->attesterCQS = $attesterCQS;
 
         return $this;
     }

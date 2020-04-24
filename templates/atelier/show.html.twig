@@ -1,38 +1,161 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Atelier{% endblock %}
+{% block title %}Atelier
+{% endblock %}
 
 {% block body %}
-    <h1>Atelier</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ atelier.id }}</td>
-            </tr>
-            <tr>
-                <th>AdresseAtelier</th>
-                <td>{{ atelier.AdresseAtelier }}</td>
-            </tr>
-            <tr>
-                <th>EmailAdresse</th>
-                <td>{{ atelier.EmailAdresse }}</td>
-            </tr>
-            <tr>
-                <th>NomCarrosserie</th>
-                <td>{{ atelier.NomCarrosserie }}</td>
-            </tr>
-            <tr>
-                <th>Certifier</th>
-                <td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<a id="sorti" href="{{ path('atelier_index') }}">
+		<svg width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M19.4828 26.25L13.2812 20L19.4828 13.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M14.1426 20H26.7184" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M35 20C35 11.7188 28.2812 5 20 5C11.7188 5 5 11.7188 5 20C5 28.2812 11.7188 35 20 35C28.2812 35 35 28.2812 35 20Z" stroke="white" stroke-width="3" stroke-miterlimit="10"/>
+		</svg>
+	</a>
+	
+	
 
-    <a href="{{ path('atelier_index') }}">back to list</a>
+	<div id="tab" class="container-fluid mt-3">
+		<h3>{{ atelier.NomCarrosserie }}</h3>
+		{% for clien in atelier.clients %}
+	<h1>{{ clien.NomClient}}</h1>
+		
+	{% endfor %}
 
-    <a href="{{ path('atelier_edit', {'id': atelier.id}) }}">edit</a>
+		<ul id="bad" class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" href="#home">
+					<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M10.2125 7.125L1.25 13.1V26.25H7.5V16.25H12.5V26.25H18.75V12.8125L10.2125 7.125Z" fill="#537B8E"/>
+						<path d="M12.5 3.75V5.6375L15 7.3L17.1625 8.75H18.75V9.8125L21.25 11.4875V13.75H23.75V16.25H21.25V18.75H23.75V21.25H21.25V26.25H28.75V3.75H12.5ZM23.75 11.25H21.25V8.75H23.75V11.25Z" fill="#537B8E"/>
+					</svg>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#menu1">
+					<svg width="38" height="30" viewbox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M32.1701 4.97754L19.5604 1.58496C19.4082 1.54395 19.2041 1.52344 19 1.52344C18.7959 1.52344 18.5918 1.54395 18.4396 1.58496L5.82988 4.97754C5.52188 5.05957 5.26953 5.34082 5.26953 5.59863V19.7314C5.26953 19.9893 5.48105 20.3291 5.73711 20.4902L18.5287 28.3594C18.6586 28.4385 18.8256 28.4795 18.9963 28.4795C19.167 28.4795 19.3377 28.4385 19.4639 28.3594L32.2555 20.4902C32.5115 20.332 32.723 19.9922 32.723 19.7314V5.59863C32.7305 5.34082 32.4781 5.0625 32.1701 4.97754ZM30.0586 19.1689L19 25.9717L7.94141 19.1689V6.6416L19 3.66504L30.0586 6.6416V19.1689ZM14.9996 13.2803C14.8883 13.1602 14.7102 13.0869 14.5172 13.0869H12.4688C12.2275 13.0869 12.0865 13.3037 12.2275 13.459L16.9182 18.5566C16.9736 18.6166 17.0462 18.6653 17.1301 18.6989C17.2139 18.7325 17.3066 18.7501 17.4006 18.7501C17.4946 18.7501 17.5873 18.7325 17.6711 18.6989C17.7549 18.6653 17.8275 18.6166 17.883 18.5566L25.7725 9.98145C25.9135 9.82617 25.7725 9.60938 25.5312 9.60938H23.4828C23.2936 9.60938 23.1117 9.68262 23.0004 9.80273L17.4006 15.8906L14.9996 13.2803Z" fill="#537B8E"/>
+					</svg>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#menu2">
+					<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4.6875 2.8125V26.0747L5.41875 26.2209L16.6688 28.5647L17.8125 28.7991V26.25H23.4375V14.4722L25.05 12.8616L25.3125 12.5672V2.8125H4.6875ZM13.2422 4.6875H23.4375V11.7778L21.825 13.3884L21.5625 13.6828V24.375H17.8125V16.0256L17.55 15.7322L15.9375 14.1216V5.3625L15.2344 5.18438L13.2422 4.6875ZM6.5625 4.95L14.0625 6.825V14.9128L14.325 15.2062L15.9375 16.8159V26.5125L6.5625 24.5512V4.95188V4.95Z" fill="#537B8E"/>
+					</svg>
+				</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div id="home" class="container tab-pane active"><br>
+				<table class="table ">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ atelier.id }}</td>
+						</tr>
+						<tr>
+							<th>Adresse de l'atelier</th>
+							<td>{{ atelier.AdresseAtelier }}</td>
+						</tr>
+						<tr>
+							<th>Nom de la carrosserie</th>
+							<td>{{ atelier.NomCarrosserie }}</td>
+						</tr>
+						<tr>
+							<th>Contact</th>
+							{% for cont in atelier.representer %}
 
-    {{ include('atelier/_delete_form.html.twig') }}
+								<td>{{ cont.NomContact }}</td>
+								<td>{{ cont.Poste }}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th>Adresse e-mail</th>
+
+							<td>{{ atelier.EmailAdresse }}</td>
+						</tr>
+						<tr>
+							<th>Contrat</th>
+							{% for contr in atelier.contrats %}
+							<td>{{ contr.TypeContrat  }}</td>
+                            {% endfor %}
+						</tr>
+
+						<tr>
+							<th>Atelier certifié</th>
+							<td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
+						</tr>
+						<tr>
+							<th>Atelier sous attestation  CQS</th>
+							<td>{{ atelier.attesterCQS ? 'Yes' : 'No' }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="menu1" class="container tab-pane fade"><br>
+				<h3>Attestations</h3>
+				<p>#####################################</p>
+				<p>#####################################</p>
+				<p>######################################</p>
+			</div>
+			<div id="menu2" class="container-fluid tab-pane fade"><br>
+				<h3>Historique des visites</h3>
+				<table id="liste" class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Date d'intervention</th>
+							<th scope="col">Contact</th>
+							<th scope="col">Technicien</th>
+							<th scope="col">Machine</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for fiche in atelier.ficher %}
+							<tr>
+								<td scope="row">{{fiche.id}}</td>
+								<td>{{fiche.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : ''}}</td>
+								{% for contact in fiche.lier %}
+									<td>{{ contact.NomContact}}</td>
+								{% endfor %}
+								{% for techni in fiche.techniciens %}
+
+									<td>{{ techni.NomTechnicien}}</td>
+								{% endfor %}
+								<td>
+									<a href="{{ path('fiche_visite_show', {'id': fiche_visite.id}) }}">show</a>
+
+								</td>
+							</tr>
+
+						{% else %}
+							<tr>
+								<td colspan="7">no records found</td>
+							</tr>
+						{% endfor %}
+
+
+					</tbody>
+				</table>
+			</div>
+            
+		</div>
+
+		<a href="{{ path('atelier_edit', {'id': atelier.id}) }}">
+			<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M2.91699 24.7916V29.1666H14.5837V26.4103H5.68783V24.7916C5.68783 23.8583 10.2524 21.7291 14.5837 21.7291C15.9837 21.7437 17.3691 21.9333 18.7107 22.2833L20.9274 20.0666C18.8857 19.3812 16.7712 19.002 14.5837 18.9583C10.6899 18.9583 2.91699 20.8978 2.91699 24.7916ZM14.5837 5.83325C11.3607 5.83325 8.75033 8.44367 8.75033 11.6666C8.75033 14.8895 11.3607 17.4999 14.5837 17.4999C17.8066 17.4999 20.417 14.8895 20.417 11.6666C20.417 8.44367 17.8066 5.83325 14.5837 5.83325ZM14.5837 14.5833C12.9795 14.5833 11.667 13.2853 11.667 11.6666C11.667 10.0478 12.9795 8.74992 14.5837 8.74992C16.1878 8.74992 17.5003 10.0624 17.5003 11.6666C17.5003 13.2708 16.2024 14.5833 14.5837 14.5833ZM31.6462 19.4687L30.1878 20.927L27.1982 18.0103L28.6566 16.552C28.8065 16.405 29.0081 16.3227 29.218 16.3227C29.428 16.3227 29.6296 16.405 29.7795 16.552L31.6462 18.4187C31.9524 18.7249 31.9524 19.2353 31.6462 19.5416V19.4687ZM17.5003 27.6208L26.3378 18.7833L29.3274 21.6999L20.5774 30.552H17.5003V27.6208Z" fill="black"/>
+			</svg>
+		</a>
+	</div>
+	{{ include('atelier/_delete_form.html.twig') }}
+
+	<script>
+		$(document).ready(function () {
+$(".nav-tabs a").click(function () {
+$(this).tab('show');
+});
+});
+	</script>
 {% endblock %}

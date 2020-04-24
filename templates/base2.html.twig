@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -13,24 +12,22 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css')}}"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/style2.css')}}">
+        {% block stylesheets %}{% endblock %}
 		</head>
 		<body>
 			{% block nav %}
-				{% include "Template_parts/_nav.html.twig" %}
+				{% include "Template_parts/_nav2.html.twig" %}
 			{% endblock %}
 			{% block aside %}
-				<aside>
-					{% include "Template_parts/_aside.html.twig" %}
-				</aside>
+				
 			{% endblock %}
 			<main>
-				{% block body %}{% endblock %}
-			</main>
-<script
-  src="https://code.jquery.com/jquery-3.5.0.min.js"
-  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-  crossorigin="anonymous"></script>
+            {% block body %}{% endblock %}
+            </main>
+				
+			
+
 			{% block javascripts %}{% endblock %}
 		</body>
 	</html>
