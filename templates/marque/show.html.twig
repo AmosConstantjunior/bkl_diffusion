@@ -1,26 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marque{% endblock %}
+{% block title %}Marque
+{% endblock %}
 
 {% block body %}
-    <h1>Marque</h1>
+	<h1 class='mt-4 mb-4' style='text-align:center'>{{ marque.NomMarque }}
+	</h1>
+	<a class="btn btn-secondary mt-2 ml-4 mb-3" href="{{ path('marque_index') }}">Retour</a>
+		<div class="dropdown">
+		<button type="button" class="btn btn-info float-right dropdown-toggle  mr-4" data-toggle="dropdown">
+			Editer ou Supprimer
+		</button>
+		<div class="dropdown-menu pl-3">
+			<a class="btn btn-info " href="{{ path('marque_edit', {'id': marque.id}) }}">
+				<svg width="24" height="22" viewbox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g clip-path="url(#clip0)">
+						<path d="M16.7625 14.8207L18.0958 13.4457C18.3042 13.2309 18.6667 13.3813 18.6667 13.6906V19.9383C18.6667 21.077 17.7708 22.0008 16.6667 22.0008H2C0.895833 22.0008 0 21.077 0 19.9383V4.81328C0 3.67461 0.895833 2.75078 2 2.75078H13.3958C13.6917 2.75078 13.8417 3.12031 13.6333 3.33945L12.3 4.71445C12.2375 4.77891 12.1542 4.81328 12.0625 4.81328H2V19.9383H16.6667V15.0613C16.6667 14.9711 16.7 14.8852 16.7625 14.8207ZM23.2875 6.14961L12.3458 17.4332L8.57917 17.8629C7.4875 17.9875 6.55833 17.0379 6.67917 15.9035L7.09583 12.0191L18.0375 0.735547C18.9917 -0.248438 20.5333 -0.248438 21.4833 0.735547L23.2833 2.5918C24.2375 3.57578 24.2375 5.16992 23.2875 6.14961V6.14961ZM19.1708 7.47734L16.75 4.98086L9.00833 12.9688L8.70417 15.7746L11.425 15.4609L19.1708 7.47734ZM21.8708 4.05273L20.0708 2.19648C19.9 2.02031 19.6208 2.02031 19.4542 2.19648L18.1667 3.52422L20.5875 6.0207L21.875 4.69297C22.0417 4.5125 22.0417 4.22891 21.8708 4.05273V4.05273Z" fill="white"/>
+					</g>
+					<defs>
+						<clipPath id="clip0">
+							<rect width="24" height="22" fill="white"/>
+						</clipPath>
+					</defs>
+				</svg>
+				Modifier</a>
+			{{ include('marque/_delete_form.html.twig') }}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ marque.id }}</td>
-            </tr>
-            <tr>
-                <th>NomMarque</th>
-                <td>{{ marque.NomMarque }}</td>
-            </tr>
-        </tbody>
-    </table>
+		</div>
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ marque.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom de la marque</th>
+				<td>{{ marque.NomMarque }}</td>
+			</tr>
+			<tr>
+				<th>Les models</th>
+				{% for ListeModel in marque.marquer %}
+					<td>
+						{{ListeModel.NomModel}}
+					</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('marque_index') }}">back to list</a>
 
-    <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a>
 
-    {{ include('marque/_delete_form.html.twig') }}
 {% endblock %}

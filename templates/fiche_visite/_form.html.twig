@@ -1,44 +1,77 @@
-<section id="inscriptionF" class="container">
+<section id="inscriptionF" class="container-fluid">
 
 
 	{{ form_start(form) }}
 	{# {{ form_widget(form) }} #}
-	<div class="form-group">
-		{{ form_label(form.DateIntervention, "Date d'intervention")}}
+	<div id="selection0" class="form-row">
+		<div class='form-group col-md-3'>
+			{{ form_row(form.atelier, {'attr':{'class':'form-control', 'placeholder':'%'}})}}
+		</div>
+		<div class="form-group col-md-3">
+			{{form_row(form.clients,  {'attr':{'class':'form-control', 'placeholder':'%'}})}}
+		</div>
+		<div class="form-group col-md-3">
+			{{ form_row(form.machines, {'attr':{'class':'form-control', 'placeholder':'@Email'}})}}
+		</div>
+		<div class="form-group col-md-3">
+
+			{{ form_label(form.lier, 'Contact')}}
+			{{ form_widget(form.lier, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
+		</div>
+	</div>
+	<div class="form-row">
+
+		<div class="form-group col-md-6">
+
+			{{ form_label(form.DateIntervention, "Date d'intervention")}}
 
 
- {{ form_widget(form.DateIntervention, {'attr':{'class':'form-control'}})}}
-		{# <input type='text' class="form-control" /> #}
-		
+			{{ form_widget(form.DateIntervention,{'attr':{'class':'js-datepicker form-control'}})}}
+			{# <input type='text' class="form-control" /> #}
+			
+		</div>
+		<div class="form-group col-md-6">
 
+			{{ form_row(form.techniciens, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
 		</div>
 
+	</div>
 
-	</div>
-	<div id="selection0" class="form-group">
-	<div class="selection">
-		{{ form_row(form.machines, {'attr':{'class':'form-control', 'placeholder':'@Email'}})}}
-	</div>
-	<div class="selection1">
-	
-		{{ form_row(form.techniciens, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
-	</div>
-	<div class="selection2">
-	
-		{{ form_label(form.lier, 'Contact')}}
-		{{ form_widget(form.lier, {'attr':{'class':'form-control ', 'placeholder':'@Email'}})}}
-	</div>
-	</div>
-	<div class="form-group">
-		{{ form_row(form.Commentaire, {'attr':{'class':'form-control', 'placeholder':'Commentatire'}})}}
-	</div>
 	<div class="form-group">
 		{{ form_row(form.MontantHt, {'attr':{'class':'form-control', 'placeholder':'Montant HT €'}})}}
 	</div>
 	<div class="form-group">
 		{{ form_row(form.MontantConsommable, {'attr':{'class':'form-control', 'placeholder':'Montant Consommable €'}})}}
 	</div>
+	<div class="form-group">
+		{{ form_row(form.Commentaire, {'attr':{'class':'form-control', 'placeholder':'Commentatire'}})}}
+	</div>
+	<div class="form-row">
+		<div class='col-md-4'>
+			<div class="form-check">
+				{{form_widget(form.ValiseCNOMO, {'attr':{'class':'form-check-input', 'placeholder':'Commentatire'}})}}
+				{{form_label(form.ValiseCNOMO,'Présence de la valise CNOMO')}}
+			</div>
+			<div class="form-check">
+				{{form_widget(form.cuproBrasage , {'attr':{'class':'form-check-input', 'placeholder':'Commentatire'}})}}
+				{{form_label(form.cuproBrasage, "Utilisation du cupro-brasage")}}
+			</div>
+		</div>
+		<div class='col-md-4'>
+			<div class="form-check">
+				{{form_widget(form.BesoinFormation , {'attr':{'class':'form-check-input', 'placeholder':'Commentatire'}})}}
+				{{form_label(form.BesoinFormation, "Besoin de formation")}}
+			</div>
+			<div class="form-check">
+				{{form_widget(form.SoudageMonoFace, {'attr':{'class':'form-check-input', 'placeholder':'Commentatire'}})}}
+				{{form_label(form.SoudageMonoFace, "Soudage mono-face")}}
+			</div>
+		</div>
+		<div class="form-group col-md-4">
+			{{form_row(form.LigneElectrice, {'attr':{'class':'form-control', 'placeholder':'%'}})}}
+		</div>
+	</div>
 
-	<button class="btn  btn-success">{{ button_label|default('Sauvegarder') }}</button>
 
+	<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
 	{{ form_end(form) }}</section>

@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\FicheVisite;
 use App\Form\FicheVisiteType;
 use App\Repository\FicheVisiteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/fiche/visite")
@@ -35,7 +37,6 @@ class FicheVisiteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($ficheVisite->getMachines());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ficheVisite);
             $entityManager->flush();
@@ -57,6 +58,36 @@ class FicheVisiteController extends AbstractController
         return $this->render('fiche_visite/show.html.twig', [
             'fiche_visite' => $ficheVisite,
         ]);
+    }
+
+
+    /**
+     * @Route("/{id}/export", name="fiche_visite_export", methods={"GET"})
+     */
+    public function export(FicheVisite $ficheVisite): Response
+    {
+        // Configure Dompdf according to your needs
+     $pdfOptions = new Options();
+     $pdfOptions->set('defaultFont', 'Arial');
+     
+     // Instantiate Dompdf with our options
+     $dompdf = new Dompdf($pdfOptions);
+     $html= $this->render('fiche_visite/export.html.twig', [
+            'fiche_visite' => $ficheVisite,
+        ]);
+        // Load HTML to Dompdf
+       $dompdf->loadHtml($html);
+        
+       // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+       $dompdf->setPaper('A4', 'portrait');
+
+       // Render the HTML as PDF
+       $dompdf->render();
+
+       // Output the generated PDF to Browser (inline view)
+       $dompdf->stream("mypdf.pdf", [
+           "Attachment" => false
+       ]);
     }
 
     /**

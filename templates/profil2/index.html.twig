@@ -1,0 +1,239 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello Profil2Controller!
+{% endblock %}
+
+{% block body %}
+	<nav class="interieur">
+		<div class="box">
+			<div class="container-2">
+				<span class="icon">
+					<i class="fa fa-search"></i>
+				</span>
+				<input type="search" id="search" placeholder="Recherche..."/>
+			</div>
+		</div>
+		<ul>
+			<li><ahref="{{path('profil2')}}"><svg width="40" height="35" viewbox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M20 3.39111C17.2727 3.39111 15.142 4.32725 13.608 6.19954C12.0739 8.07182 11.3068 10.4652 11.3068 13.3796C11.2879 17.0005 12.5379 19.8707 15.0568 21.9903C15.3788 22.2729 15.4924 22.635 15.3977 23.0766L14.7443 24.3483C14.536 24.7722 14.2282 25.1034 13.821 25.3419C13.4138 25.5803 12.5568 25.9203 11.25 26.3619C11.1932 26.3796 9.99527 26.7417 7.65625 27.4482C5.31723 28.1547 4.07197 28.5433 3.92045 28.6139C2.32955 29.2321 1.28788 29.8769 0.795455 30.548C0.265152 31.6608 0 34.4781 0 38.9998H40C40 34.4781 39.7348 31.6608 39.2045 30.548C38.7121 29.8769 37.6705 29.2321 36.0795 28.6139C35.928 28.5433 34.6828 28.1547 32.3438 27.4482C30.0047 26.7417 28.8068 26.3796 28.75 26.3619C27.4432 25.9203 26.5862 25.5803 26.179 25.3419C25.7718 25.1034 25.464 24.7722 25.2557 24.3483L24.6023 23.0766C24.5076 22.635 24.6212 22.2729 24.9432 21.9903C27.4621 19.8707 28.7121 17.0005 28.6932 13.3796C28.6932 10.4652 27.9261 8.07182 26.392 6.19954C24.858 4.32725 22.7273 3.39111 20 3.39111Z" fill="#C4C4C4"/></g><defs><clipPath id="clip0"><rect width="40" height="39" fill="white"/></clipPath></defs></svg></a></li>
+
+			<li><a href="{{path('app_logout')}}"><svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.3332 18.9582V16.0415H10.2082V11.6665L2.9165 17.4998L10.2082 23.3332V18.9582H23.3332Z" fill="#C4C4C4"/><path d="M29.1667 4.375H16.0417C14.4331 4.375 13.125 5.68313 13.125 7.29167V13.125H16.0417V7.29167H29.1667V27.7083H16.0417V21.875H13.125V27.7083C13.125 29.3169 14.4331 30.625 16.0417 30.625H29.1667C30.7752 30.625 32.0833 29.3169 32.0833 27.7083V7.29167C32.0833 5.68313 30.7752 4.375 29.1667 4.375Z" fill="#C4C4C4"/></svg></a></li>
+		</ul>
+	</nav>
+
+	<section id="donnees_profil" class="container-fluid row">
+		<div class="col-md-2">
+
+			<img src="https://via.placeholder.com/150
+				
+				
+																							C/O https://placeholder.com/" alt="">
+		</div>
+		<article class='row col-md-9'>
+			<div class="col-md-9">
+				{% if app.user %}
+					<h4>{{app.user.NomClient}}</h4>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Adresse e-mail :</th>
+								<td>{{app.user.email}}</td>
+							</tr>
+							<tr>
+								<th>Téléphone :</th>
+								<td>{{app.user.TelClient}}</td>
+							</tr>
+							<tr>
+								<th>Numéro de Siret</th>
+								<td>{{app.user.NumSiret}}</td>
+							</tr>
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+
+
+		</article>
+		<button id="btn_afficher" class="btn btn-info" data-toggle="modal" data-target="#SuiteDonneesProfiles">Afficher</button>
+	</section>
+	<section id="donnees_contact" class="contenaire-fluid">
+		<h5>Mes contacts</h5>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Poste</th>
+					<th scope="col">Téléphone</th>
+					<th scope="col">e-mail</th>
+					<th scope="col">atelier</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if app.user %}
+					{% for contact in app.user.contacts %}
+						<tr>
+							<td>{{contact.NomContact}}</td>
+							<td>{{contact.PrenomContact}}</td>
+							<td>{{contact.Poste}}</td>
+							<td>{{contact.TelContact}}</td>
+							<td>{{contact.Emailcontact}}</td>
+							<td>{{contact.atelier}}</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="11">Pas de contact</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+
+	</section>
+	<section id="donnees_atelier" class="container">
+		<h5>Nos Ateliers</h5>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Atelier</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">Adresse</th>
+					<th scope="col">Ville</th>
+					<th scope="col">Contrat</th>
+					<th scope="col">Certifier</th>
+					<th scope="col">Attester CQS</th>
+					<th scope="col">Contact</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if app.user %}
+					{% for atelier in app.user.ateliers %}
+						<tr>
+							<td>{{atelier.NomCarrosserie}}</td>
+							<td>{{atelier.EmailAdresse}}</td>
+							<td>{{atelier.AdresseAtelier}}</td>
+							<td>{{atelier.ville}}</td>
+							<td>{{atelier.contrats}}</td>
+							<td>{{atelier.certifier}}</td>
+							<td>{{atelier.attesterCQS}}</td>
+							{% for contact in atelier.Situer %}
+								{# <td>{{contact}}</td> #}
+							{% endfor %}
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</section>
+	<div id="info_machine" class="form-group">
+		<button class="btn btn-info" data-toggle="modal" data-target="#exampleModalScrollable">Nos machines</button>
+	</div>
+
+	<!-- Button trigger modal -->
+	{# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+			  Launch demo modal
+			</button> #}
+
+	<div class="modal fade" id="SuiteDonneesProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalScrollableTitle">Nos Données</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<tbody>
+							{% if app.user %}
+								<tr>
+									<th>Nom</th>
+									<td>{{app.user.NomClient}}</td>
+								</tr>
+								<tr>
+									<th>E-mail</th>
+									<td>{{app.user.email}}</td>
+								</tr>
+								<tr>
+									<th>Adresse</th>
+									<td>{{app.user.AdresseClient}}</td>
+								</tr>
+								<tr>
+									<th>ville</th>
+									<td>{{app.user.ville}}</td>
+								</tr>
+								<tr>
+									<th>Téléphone</th>
+									<td>{{app.user.TelClient}}</td>
+								</tr>
+								<tr>
+									<th>Numéro de Siret</th>
+									<td>{{app.user.NumSiret}}</td>
+								</tr>
+								<tr>
+									<th>Code postal</th>
+									<td>{{app.user.ville.CpVille}}</td>
+								</tr>
+								<tr>
+									<th>Zone</th>
+									<td>{{app.user.ville.zone}}</td>
+								</tr>
+							{% endif %}
+						</tbody>
+					</table>
+<a href="" class="btn btn-info">Editer</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalScrollableTitle">Nos machines</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Numéro de série</th>
+								<th scope="col">Model</th>
+								<th scope="col">Marque</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if app.user %}
+								{% for atelier in app.user.ateliers %}
+
+									{% for machine in atelier.Situer %}
+
+										<tr>
+											<td>{{machine.NumSerie}}</td>
+											<td>{{machine.model}}</td>
+											<td>{{machine.model.marque}}</td>
+
+										</tr>
+
+									{% endfor %}
+								{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+				{# <div class="modal-footer">
+												        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												        <button type="button" class="btn btn-primary">Save changes</button>
+												      </div> #}
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

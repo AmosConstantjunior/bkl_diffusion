@@ -15,6 +15,13 @@
 
 	<div id="tab" class="container-fluid mt-3">
 		<h1>{{ client.NomClient}}</h1>
+		<button id="machine" class="btn btn-primary">
+		
+		<a href=""> <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.25 14.625H14.625V20.25C14.625 20.8688 14.1188 21.375 13.5 21.375C12.8812 21.375 12.375 20.8688 12.375 20.25V14.625H6.75C6.13125 14.625 5.625 14.1188 5.625 13.5C5.625 12.8812 6.13125 12.375 6.75 12.375H12.375V6.75C12.375 6.13125 12.8812 5.625 13.5 5.625C14.1188 5.625 14.625 6.13125 14.625 6.75V12.375H20.25C20.8688 12.375 21.375 12.8812 21.375 13.5C21.375 14.1188 20.8688 14.625 20.25 14.625Z" fill="black"/>
+</svg>
+Liste des machines</a>
+		</button>
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" id="bad">
 			<li class="nav-item">
@@ -59,18 +66,51 @@
 							<th scope="col">Date  Intervention</th>
 							<th scope="col">Machine</th>
 							<th scope="col">Nom du technicien</th>
+							{# <th scope="col">Atelier</th> #}
 							<th scope="col">Nom du Contact</th>
 							<th scope="col">actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr></tr>
+						{% for machin in client.ateliers %}
 
 
-						<tr>
+							{% for detailmachine in machin.Situer %}
 
-							<td colspan="6">no records found</td>
-						</tr>
+								{% for ficheTechnique in detailmachine.technique %}
+
+									<tr>
+										<td>{{ficheTechnique.id}}</td>
+										<td>{{ficheTechnique.DateIntervention ? ficheTechnique.DateIntervention|date('d-m-Y')}}</td>
+										{% for donnesMachine in ficheTechnique.machines %}
+
+											<td>{{donnesMachine.NumSerie}}</td>
+										{% endfor %}
+										<td>{{ficheTechnique.techniciens}}</td>
+										{# {% for atelier in ficheTechnique.atelier %}
+											{% else %}
+
+												<td>--·--</td>
+										{% endfor %} #}
+										{% for contact in ficheTechnique.lier %}
+
+											<td>{{contact.NomContact}}</td>
+										{% endfor %}
+										<td>
+											<a href="{{ path('fiche_visite_show', {'id': ficheTechnique.id}) }}">show</a>
+
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+
+										<td colspan="6">no records found</td>
+									</tr>
+								{% endfor %}
+							{% endfor %}
+
+
+						{% endfor %}
 
 					</tbody>
 				</table>
@@ -79,27 +119,27 @@
 				<section>
 
 					<h4>Vos Ateliers</h4>
-					<a id="atelie" href="{{ path('atelier_new')}}">
+					<a id="ateli" href="{{ path('atelier_new')}}">
 						<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M15 8.75C14.3125 8.75 13.75 9.3125 13.75 10V13.75H10C9.3125 13.75 8.75 14.3125 8.75 15C8.75 15.6875 9.3125 16.25 10 16.25H13.75V20C13.75 20.6875 14.3125 21.25 15 21.25C15.6875 21.25 16.25 20.6875 16.25 20V16.25H20C20.6875 16.25 21.25 15.6875 21.25 15C21.25 14.3125 20.6875 13.75 20 13.75H16.25V10C16.25 9.3125 15.6875 8.75 15 8.75ZM15 2.5C8.1 2.5 2.5 8.1 2.5 15C2.5 21.9 8.1 27.5 15 27.5C21.9 27.5 27.5 21.9 27.5 15C27.5 8.1 21.9 2.5 15 2.5ZM15 25C9.4875 25 5 20.5125 5 15C5 9.4875 9.4875 5 15 5C20.5125 5 25 9.4875 25 15C25 20.5125 20.5125 25 15 25Z" fill="black"/>
 						</svg>
 						Ajouter Atelier</a>
-					{% for atelier in client.ateliers %}
-						<table id="listeAtelier" class="table table-striped">
-							<thead>
-								<tr>
-									<th scope="col">Nom d'atelier</th>
-									<th scope="col">Adresse</th>
-									<th scope="col">Ville</th>
-									<th scope="col">Code postal</th>
-									<th scope="col">Point total du dernier certificat</th>
-									<th scope="col">Action</th>
-								</tr>
-							</thead>
-							<tbody>
+					<table id="listeAtelier" class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Nom d'atelier</th>
+								<th scope="col">Adresse</th>
+								<th scope="col">Ville</th>
+								<th scope="col">Code postal</th>
+								<th scope="col">Point total du dernier certificat</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for atelier in client.ateliers %}
 								<tr>
 
-									<td>{{ atelier.NomCarrosserie }}</td>
+									<td scope="row">{{ atelier.NomCarrosserie }}</td>
 									<td>{{ atelier.AdresseAtelier }}</td>
 									<td>{{ atelier.ville }}</td>
 									<td>{{ atelier.ville.CpVille }}</td>
@@ -119,9 +159,9 @@
 										</a>
 									</td>
 								</tr>
-							</tbody>
-						</table>
-					{% endfor %}
+							{% endfor %}
+						</tbody>
+					</table>
 
 				</section>
 			</div>
@@ -166,6 +206,16 @@
 								<th>Téléphone client</th>
 								<td>{{ client.TelClient }}</td>
 							</tr>
+							{% for atel in client.ateliers %}
+								{% for mach in atel.Situer %}
+									{% if mach is empty %}
+										<button>Ajouter machine</button>
+									{% else %}
+										<th>Machines</th>
+										<td>{{mach.NumSerie}}</td>
+									{% endif %}
+								{% endfor %}
+							{% endfor %}
 
 						</tbody>
 					</table>

@@ -3,14 +3,16 @@
 {% block title %}Marque index{% endblock %}
 
 {% block body %}
-    <h1>Marque index</h1>
+    <h2 class="mt-4 mb-4" style="text-align:center" >Les marques des machines</h2>
+<a class="btn btn-info float-right mb-3 mr-4 mt-1 mb-2" href="{{ path('model_index') }}">Voir les models</a>
+<a class="btn btn-info float-right mb-3 mr-3 mt-1 mb-2" href="{{ path('marque_new') }}">Ajouter une marque</a>
 
-    <table class="table">
+    <table class="table w-100 table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomMarque</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nom de la marque</th>
+                <th scope="col">action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +21,11 @@
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.NomMarque }}</td>
                 <td>
-                    <a href="{{ path('marque_show', {'id': marque.id}) }}">show</a>
-                    <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a>
+                    <a href="{{ path('marque_show', {'id': marque.id}) }}"><svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15 11.25C14.0075 11.2566 13.0574 11.6537 12.3556 12.3556C11.6537 13.0574 11.2566 14.0075 11.25 15C11.25 17.0525 12.9475 18.75 15 18.75C17.0513 18.75 18.75 17.0525 18.75 15C18.75 12.9487 17.0513 11.25 15 11.25Z" fill="black"/>
+								<path d="M15.0001 6.25C5.45887 6.25 2.59137 14.5213 2.56512 14.605L2.43262 15L2.56387 15.395C2.59137 15.4787 5.45887 23.75 15.0001 23.75C24.5414 23.75 27.4089 15.4787 27.4351 15.395L27.5676 15L27.4364 14.605C27.4089 14.5213 24.5414 6.25 15.0001 6.25ZM15.0001 21.25C8.31137 21.25 5.72012 16.4425 5.09262 15C5.72262 13.5525 8.31512 8.75 15.0001 8.75C21.6889 8.75 24.2801 13.5575 24.9076 15C24.2776 16.4475 21.6851 21.25 15.0001 21.25V21.25Z" fill="black"/>
+							</svg></a>
+                    {# <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}
@@ -31,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('marque_new') }}">Create new</a>
+    
 {% endblock %}

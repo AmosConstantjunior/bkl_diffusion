@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Marque{% endblock %}
+{% block title %}Edit Marque
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Marque</h1>
+	<a class="btn btn-info  ml-4 mt-3 " href="{{ path('marque_index') }}">Retour</a>
+	<h1 class="mt-3 mb-4" style="text-align:center">Modifier les détails Marque</h1>
 
-    {{ include('marque/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('marque_index') }}">back to list</a>
+		
+			{{ include('marque/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 
-    {{ include('marque/_delete_form.html.twig') }}
+	<div class="float-right mr-4">{{ include('marque/_delete_form.html.twig') }}</div>	
+	
+
+
 {% endblock %}

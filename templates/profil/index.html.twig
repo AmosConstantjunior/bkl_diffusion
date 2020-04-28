@@ -1,20 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Hello ProfilController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section id="ProfilTechnicien" class="container-fluid">
+		<article>
+			<img src="https://via.placeholder.com/250
+				
+				C/O https://placeholder.com/" alt="Image profil">
+			<div>
+				<h2>Profil</h2>
+				<table class="table">
+					<tbody>
+						{% if app.user %}
+							<tr>
+								<th>Nom :</th>
+								<td>{{app.user.NomTechnicien}}</td>
+							</tr>
+							<tr>
+								<th>Prenom :</th>
+								<td>{{app.user.PrenomTechnicien}}</td>
+							</tr>
+							<tr>
+								<th>E-mail :</th>
+								<td>{{app.user.email}}</td>
+							</tr>
+						</tbody>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+					<a id='profilEdit' class="btn btn-info" href="{{ path('techniciens_edit', {'id': app.user.id}) }}">Editer</a>
+					{% else %}
+						<p>Pas connecter</p>
+					{% endif %}
+				</table>
+			</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Stage/BKL_Diffusion/src/Controller/ProfilController.php'|file_link(0) }}">src/Controller/ProfilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Stage/BKL_Diffusion/templates/profil/index.html.twig'|file_link(0) }}">templates/profil/index.html.twig</a></code></li>
-    </ul>
+		</article>
+		<hr>
+		<h4>Mes interventions</h4>
+		<div class="hist">
+		
+		
+		
+		<table id="hist" class="table table-hover mt-5">
+			<thead>
+				<tr>
+					<td scope="col">Id</td>
+					<td scope="col">Date d'intervention</td>
+					<td scope="col">Atelier</td>
+					<td scope="col">Machine</td>
+					<td scope="col">Contact</td>
+					<td scope="col">Action</td>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% if app.user %}
+					{% for fiche in app.user.rediger %}
+
+						<tr>
+							<td scope="row">{{fiche.id}}</td>
+							<td>{{fiche.DateIntervention ? fiche.DateIntervention|date('d-m-Y')}}</td>
+							{# <td>{{fiche.atelier}}</td> #}
+							<td>--·--</td>
+							{% for machine in fiche.machines %}
+
+								<td>{{machine}}</td>
+								{% else %}
+									<td>--·--</td>
+							{% endfor %}
+							{% for contact in fiche.lier %}
+								<td>{{contact}}</td>
+
+							{% endfor %}
+							<td>
+								<a href="{{ path('fiche_visite_show', {'id': fiche.id}) }}">show</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+
 </div>
+	</section>
+
+
 {% endblock %}

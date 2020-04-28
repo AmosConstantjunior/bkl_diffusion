@@ -15,7 +15,7 @@ class EvaluerType extends AbstractType
             ->add('Note')
             ->add('conclusion')
             ->add('Action')
-            ->add('evalu')
+            // ->add('evalu')
             ->add('evaluation')
         ;
     }

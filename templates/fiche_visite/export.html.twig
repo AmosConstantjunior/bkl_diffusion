@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Helvetica&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {# <link rel="stylesheet" href="{{ asset('assets/css/export.css')}}"> #}
+		<title>Export de fiche maintenance</title>
+<style>
+body{
+	width:100%
+}
+.generale article{
+    
+    background-color:red;
+    height: 150px;
+ }
+ .generale article h1{
+     margin-top: auto;
+     margin-bottom: auto;
+     color: white;
+ }
+ .generale article div{
+     padding: 2%;
+ }
+ .generale article div img{
+     width: 75px;
+ }
+ .generale section h5{
+     text-align: center;
+     margin-top: 1vh;
+     margin-bottom: 1vh;
+ }
+ th{
+	 width:15px
+	 padding:1px
+ }
+ #signature{
+     
+     border: .5px solid rgb(138, 135, 135);
+ }
+ #devis{
+     width: 100%;
+ }
+ .notation{
+     width: 100%;
+     height: 10vh;
+     border: 1px solid rgb(138, 135, 135);
+ }
+ #observations, #observations2{
+     height: 250px;
+    border: 1px solid rgb(138, 135, 135); 
+	
+	width:49%;
+	
+	
+ }
+ #observations2{
+float:right;
+
+ }
+ .observation{
+	 display:flex;
+ } 
+ .generale section h5{
+     text-align: center;
+ }
+ 
+.generale article table{
+	 height:10px
+ }
+ #nom{
+	 
+ }
+ #machine table{
+	 height:150px;
+width:50%
+ }
+
+</style>
+	</head>
+	<body>
+		<section class="">
+			<div class="generale">
+				<article >
+					<div class="">
+						<img src="https://lh3.googleusercontent.com/proxy/1BbOhyp7DuT3xeL6aonqHbLYSZLC6eMo-QEP7qtf4YRuC8fsB-5ZWM0cvbbQBP8oEhDhDk3ujPvJ8kop0OKC6ygdFDYHwatbXHx7yy_Nv4EP1Gxd_F4" alt="">
+					</div>
+					<h3 class="">Rapport de Maintenance</h3>
+				</article>
+				<section  class="">
+					<div id="nom" class="">
+						<p class="">Contact : M. Bernard KLEIN</p>
+						<p class="">Tél 0611 62 72 66</p>
+						<p class="">maintenance@cqsoudage.com</p>
+					</div>
+					<h5  style="text-align: center">STATION DE SOUDAGE PAR RÉSISTANCE</h5>
+
+					<div id="machine" class="  border">
+						<table class="table">
+							<tbody>
+
+								<tr>
+									<th>Marque</th>
+									<td></td>
+								</tr>
+								{% for machine in fiche_visite.machines %}
+									{% for modele in machine.model %}
+									
+									{% endfor %}
+									<tr>
+										<th>Désignation Type</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th>N° série</th>
+										<td>{{machine}}</td>
+									</tr>
+									<tr>
+										<th>Version Eprom</th>
+										<td>{{machine.VersionEprom}}</td>
+									</tr>
+								{% endfor %}
+								<tr>
+									<th>Technicien</th>
+									<td>{{fiche_visite.techniciens}}</td>
+								</tr>
+								<tr>
+									<th>Date d’intervention</th>
+									<td>{{fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('d-m-Y')}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div id="signature" class=" border"></div>
+					</div>
+					<h5 class='' style="text-align: center">VALIDATION DU DEVIS</h5>
+					<div class="form-group">
+						<table id="devis" class="table ">
+							<tbody class="border">
+								<tr>
+									<th>Responsable SAV</th>
+									<td>MR</td>
+								</tr>
+								<tr>
+									<th>Responsable atelier</th>
+									{% for contact in fiche_visite.lier %}
+										<td>{{contact.NomContact}}
+											{{contact.PrenomContact}}</td>
+									{% endfor %}
+								</tr>
+								<tr>
+									<th>Fax atelier / email</th>
+									{% for email in fiche_visite.atelier %}
+										<td>{{email.EmailAdresse}}</td>
+									{% endfor %}
+								</tr>
+								<tr>
+									<th>Commande EBP</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>Montant HT</th>
+									<td>{{fiche_visite.MontantHt}}
+										€</td>
+								</tr>
+								<tr>
+									<th>Montant consommable</th>
+									<td>{{fiche_visite.MontantConsommable}}
+										€</td>
+								</tr>
+								<tr>
+									<th>Commentaires</th>
+									<td>{{fiche_visite.commentaire}}</td>
+								</tr>
+								<tr>
+									<th>Prochaine intervention</th>
+									<td></td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+					<h5 class='3' style="text-align: center">NOTATION CQS / CAPACITÉS DE SOUDAGE DE L’ATELIER</h5>
+
+					<div class="notation ">
+						<div class="">
+							<h4>Attestation CQS :  %</h4>
+							<h5>Mention :</h5>
+							{# {% if <= 49 %}
+																																			<div class="alert alert-danger" role="alert">
+																																				Risque très important de non soudure
+																																			</div>
+																																		{% elseif == 50 && <= 79 %}
+																																			<div class="alert alert-danger" role="alert">
+																																				Risque important de non soudure
+																																			</div>
+																																		{% elseif >= 80 %}
+																																			<div class="alert alert-success" role="alert">
+																																				Bonne maitrise du process de soudage
+																																			</div>
+																																		{% endif %} #}
+
+						</div>
+						<div class=""></div>
+					</div>
+					<div class="form-group">
+						<table class="table border">
+							<tbody>
+								<tr>
+									<th class="border border-left-0">Présence de la valise CNOMO</th>
+									{% if fiche_visite.ValiseCNOMO == 1 %}
+										<td class="border border-right-0">OUI</td>
+									{% else %}
+										<td class="border border-right-0">NON</td>
+									{% endif %}
+								</tr>
+								<tr>
+									<th class="border border-left-0">Utilisation du cupro-brasage</th>
+									{% if fiche_visite.cuproBrasage == 1 %}
+										<td class="border border-right-0">OUI</td>
+									{% else %}
+										<td class="border border-right-0">NON</td>
+									{% endif %}
+								</tr>
+								<tr>
+									<th class="border border-left-0">Besoin de formation</th>
+									{% if fiche_visite.BesoinFormation == 1 %}
+
+										<td class="border border-right-0">OUI</td>
+									{% else %}
+										<td class="border border-right-0">NON</td>
+									{% endif %}
+								</tr>
+							</tbody>
+						</table>
+						<table class="table border ">
+							<tbody>
+								<tr>
+									<th class="border border-left-0">Soudage mono-face</th>
+									{% if fiche_visite.SoudageMonoFace == 1 %}
+
+										<td class="border border-right-0">OUI</td>
+									{% else %}
+										<td class="border border-right-0">NON</td>
+									{% endif %}
+								</tr>
+								<tr>
+									<th class="border border-left-0">___/___/___</th>
+									<td class="border border-right-0">3 Phases / V</td>
+								</tr>
+								<tr>
+									<th class="border border-left-0">Qualité de la ligne électrique</th>
+									<td class="border border-right-0">
+										{{fiche_visite.LigneElectrice}}
+										%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<section class='observation'>
+
+						<div id="observations" >
+						
+						</div>
+						<div id="observations2"></div>
+					</section>
+					<h5>Sté BKL - Route du Mourle - 64800 MONTAUT (France) - Tél 0559 71 97 37 / Fax 0559 71 98 24 -</h5>
+					<div class="form-group ">
+						<h6 class="">e-mail : maintenance@cqsoudage.com</h6>
+						<span class="">Sarl au capital de 20 000 € - RCS 451 459 424 - Siren 451 459 424 000 11 – APE 511R - TVA FR70451459424</span>
+					</div>
+				</section>
+			</div>
+		</section>
+	</body>
+</html>

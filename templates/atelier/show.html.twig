@@ -12,15 +12,11 @@
 			<path d="M35 20C35 11.7188 28.2812 5 20 5C11.7188 5 5 11.7188 5 20C5 28.2812 11.7188 35 20 35C28.2812 35 35 28.2812 35 20Z" stroke="white" stroke-width="3" stroke-miterlimit="10"/>
 		</svg>
 	</a>
-	
-	
+
 
 	<div id="tab" class="container-fluid mt-3">
+		<h1>{{atelier.Clients}}</h1>
 		<h3>{{ atelier.NomCarrosserie }}</h3>
-		{% for clien in atelier.clients %}
-	<h1>{{ clien.NomClient}}</h1>
-		
-	{% endfor %}
 
 		<ul id="bad" class="nav nav-tabs">
 			<li class="nav-item">
@@ -48,51 +44,75 @@
 		</ul>
 		<div class="tab-content">
 			<div id="home" class="container tab-pane active"><br>
-				<table class="table ">
-					<tbody>
-						<tr>
-							<th>Id</th>
-							<td>{{ atelier.id }}</td>
-						</tr>
-						<tr>
-							<th>Adresse de l'atelier</th>
-							<td>{{ atelier.AdresseAtelier }}</td>
-						</tr>
-						<tr>
-							<th>Nom de la carrosserie</th>
-							<td>{{ atelier.NomCarrosserie }}</td>
-						</tr>
-						<tr>
-							<th>Contact</th>
-							{% for cont in atelier.representer %}
+			<section class='tarmac'>
+			
+				<div class="infoAt">
 
-								<td>{{ cont.NomContact }}</td>
-								<td>{{ cont.Poste }}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<th>Adresse e-mail</th>
+					<table class="table ">
+						<tbody>
 
-							<td>{{ atelier.EmailAdresse }}</td>
-						</tr>
-						<tr>
-							<th>Contrat</th>
-							{% for contr in atelier.contrats %}
-							<td>{{ contr.TypeContrat  }}</td>
-                            {% endfor %}
-						</tr>
+							<tr>
+								<th>Adresse de l'atelier</th>
+								<td>{{ atelier.AdresseAtelier }}</td>
+							</tr>
+							<tr>
+								<th>ville</th>
+								<td>{{ atelier.Ville }}</td>
 
-						<tr>
-							<th>Atelier certifié</th>
-							<td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
-						</tr>
-						<tr>
-							<th>Atelier sous attestation  CQS</th>
-							<td>{{ atelier.attesterCQS ? 'Yes' : 'No' }}</td>
-						</tr>
-					</tbody>
-				</table>
+							</tr>
+							<tr>
+								<th>code postal</th>
+
+
+								<td>{{ atelier.Ville.CpVille }}</td>
+
+							</tr>
+							<tr>
+								<th>Nom de la carrosserie</th>
+								<td>{{ atelier.NomCarrosserie }}</td>
+							</tr>
+
+							<tr>
+								<th>Adresse e-mail</th>
+
+								<td>{{ atelier.EmailAdresse }}</td>
+							</tr>
+							<tr>
+								<th>Contrat</th>
+								{% for contr in atelier.contrats %}
+									<td>{{ contr.TypeContrat  }}</td>
+								{% endfor %}
+							</tr>
+
+							<tr>
+								<th>Atelier certifié</th>
+								<td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
+							</tr>
+							<tr>
+								<th>Atelier sous attestation  CQS</th>
+								<td>{{ atelier.attesterCQS ? 'Yes' : 'No' }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contactA">
+					<table class="table">
+						<tbody>
+
+							<tr>
+								<th>Contact</th>
+
+								{% for cont in atelier.representer %}
+
+									<td>{{ cont.NomContact }}</td>
+									<td>{{ cont.Poste }}</td>
+								{% endfor %}
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
+			</section>
 			<div id="menu1" class="container tab-pane fade"><br>
 				<h3>Attestations</h3>
 				<p>#####################################</p>
@@ -116,7 +136,7 @@
 						{% for fiche in atelier.ficher %}
 							<tr>
 								<td scope="row">{{fiche.id}}</td>
-								<td>{{fiche.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : ''}}</td>
+								<td>{{fiche.DateIntervention ? fiche.DateIntervention|date('Y-m-d') : ''}}</td>
 								{% for contact in fiche.lier %}
 									<td>{{ contact.NomContact}}</td>
 								{% endfor %}
@@ -125,7 +145,7 @@
 									<td>{{ techni.NomTechnicien}}</td>
 								{% endfor %}
 								<td>
-									<a href="{{ path('fiche_visite_show', {'id': fiche_visite.id}) }}">show</a>
+									<a href="{{ path('fiche_visite_show', {'id': fiche.id}) }}">show</a>
 
 								</td>
 							</tr>
@@ -140,16 +160,16 @@
 					</tbody>
 				</table>
 			</div>
-            
+
 		</div>
 
-		<a href="{{ path('atelier_edit', {'id': atelier.id}) }}">
+		<a id="editer" href="{{ path('atelier_edit', {'id': atelier.id}) }}">
 			<svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M2.91699 24.7916V29.1666H14.5837V26.4103H5.68783V24.7916C5.68783 23.8583 10.2524 21.7291 14.5837 21.7291C15.9837 21.7437 17.3691 21.9333 18.7107 22.2833L20.9274 20.0666C18.8857 19.3812 16.7712 19.002 14.5837 18.9583C10.6899 18.9583 2.91699 20.8978 2.91699 24.7916ZM14.5837 5.83325C11.3607 5.83325 8.75033 8.44367 8.75033 11.6666C8.75033 14.8895 11.3607 17.4999 14.5837 17.4999C17.8066 17.4999 20.417 14.8895 20.417 11.6666C20.417 8.44367 17.8066 5.83325 14.5837 5.83325ZM14.5837 14.5833C12.9795 14.5833 11.667 13.2853 11.667 11.6666C11.667 10.0478 12.9795 8.74992 14.5837 8.74992C16.1878 8.74992 17.5003 10.0624 17.5003 11.6666C17.5003 13.2708 16.2024 14.5833 14.5837 14.5833ZM31.6462 19.4687L30.1878 20.927L27.1982 18.0103L28.6566 16.552C28.8065 16.405 29.0081 16.3227 29.218 16.3227C29.428 16.3227 29.6296 16.405 29.7795 16.552L31.6462 18.4187C31.9524 18.7249 31.9524 19.2353 31.6462 19.5416V19.4687ZM17.5003 27.6208L26.3378 18.7833L29.3274 21.6999L20.5774 30.552H17.5003V27.6208Z" fill="black"/>
 			</svg>
 		</a>
 	</div>
-	{{ include('atelier/_delete_form.html.twig') }}
+	{# {{ include('atelier/_delete_form.html.twig') }} #}
 
 	<script>
 		$(document).ready(function () {

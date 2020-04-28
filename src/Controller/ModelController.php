@@ -20,6 +20,7 @@ class ModelController extends AbstractController
      */
     public function index(ModelRepository $modelRepository): Response
     {
+
         return $this->render('model/index.html.twig', [
             'models' => $modelRepository->findAll(),
         ]);

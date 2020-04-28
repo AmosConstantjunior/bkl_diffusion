@@ -1,4 +1,11 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section class="container-fluid">
+	{{ form_start(form) }}
+	{# {{ form_widget(form) }} #}
+	<div class="form-group">
+
+		{{form_label(form.NomMarque, 'Nom de la marque')}}
+		{{form_widget(form.NomMarque, {'attr':{'class':'form-control'}})}}
+	</div>
+	<button class="btn btn-success mt-4 mb-3">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+</section>

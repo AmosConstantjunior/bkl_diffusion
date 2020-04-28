@@ -1,6 +1,13 @@
 
+html{
+  height: 100vh;
+  width: 99vw;
+}
 body{
     display: flex;
+    height: 100%;
+    width: 100%;
+    
 }
 nav header img{
   
@@ -32,13 +39,11 @@ ul li{
     list-style-type: none;
     margin: 1.5vw;
 }
-ul li a{
-    
-}
+
 main{
     
-width: 1211px;
-height: 100vh;
+width: 100%;
+height:100%;
 left: 289px;
 top: 0px;
 
@@ -64,6 +69,10 @@ margin-top: 1vh;
     display: flex;
     margin-top: 2vw;
     margin-bottom: 5vh;
+}
+.photo h4{
+  margin-top: auto;
+  margin-bottom: auto;
 }
 hr{
     border-top: 2px solid #C6DEEA ;
@@ -151,17 +160,18 @@ hr{
 .centrale article{
     position: absolute;
     width: 509px;
-    height: 546px;
+    height: 500px;
     left: 901px;
     top: 115px;
-background-color: #65737e;    
+background-color: white;    
 }
+
 .attestation{
     position: absolute;
 width: 509px;
-height: 275px;
+height: 280px;
 left: 785px;
-top: 706px;
+top: 670px;
 
 background: #FFFFFF;
 border: 7px solid rgba(0, 0, 0, 0.35);
@@ -181,6 +191,7 @@ font-weight: normal;
 font-size: 35px;
 line-height: 41px;
 /* identical to box height */
+cursor: pointer;
 
 
 color: #888888;
@@ -190,7 +201,7 @@ color: #888888;
   position: absolute;
 width: 200px;
 height: 56px;
-left: 200px;
+left: 150px;
 top: 166px;
 
 font-family: Roboto;
@@ -205,7 +216,7 @@ color: #888888;
   position: absolute;
 width: 30px;
 height: 30px;
-left: 426px;
+left: 350px;
 top: 195px;
 }
 .attestation span:hover  #info{
@@ -223,5 +234,157 @@ display: none;
 
 background: #C4C4C4;
 }
+#titre{
+  margin-left: 2vw;
+}
+#tete_historique{
+    position: absolute;
+width: 210px;
+height: 37px;
+left: 49px;
+top: 3px;
 
-   
+background: #C6DEEA;
+box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.25);
+  }
+
+.attestation h1{
+  position: absolute;
+width: 125px;
+height: 70px;
+left: 60px;
+top: 93px;
+color: #888888;
+font-size: 5em;
+}
+#list{
+  margin-top: 7vh;
+  overflow: auto;
+}
+#donnees_profil{
+  height: 28%;
+  width: 95%;
+  margin-left: 3vw;
+  background-color: white;
+  /* display: flex; */
+  border: 2px solid rgba(79, 72, 72, 0.57);
+box-sizing: border-box;
+box-shadow: 16px 13px 7px rgba(0, 0, 0, 0.25);
+}
+#donnees_profil div img{
+  height: 17vh;
+  border-radius: 50%;
+  margin-top: 3.5vh;
+  margin-bottom: auto;
+}
+#donnees_profil div{
+  padding-top: auto;
+  padding-bottom: auto;
+}
+#donnees_profil article div{
+  margin: 1vw;
+}
+
+#donnees_contact{
+  margin-top: 3vh;
+  
+  height: 28%;
+  margin-left: 3vw;
+  width: 95%;
+  padding-top:1vh ;
+  overflow: auto;
+  background-color: white;
+  
+  border: 2px solid rgba(79, 72, 72, 0.57);
+box-sizing: border-box;
+box-shadow: 16px 13px 7px rgba(0, 0, 0, 0.25);
+}
+#donnees_contact h5{
+  text-align: center;
+  margin-top: 1vh;
+}
+#donnees_atelier{
+  height: 28%;
+  margin-left: 3vw;
+  margin-top: 3vh;
+  width: 100%;
+  background-color: white;
+  
+  border: 2px solid rgba(79, 72, 72, 0.57);
+box-sizing: border-box;
+box-shadow: 16px 13px 7px rgba(0, 0, 0, 0.25);
+
+}
+#donnees_atelier h5{
+  padding-top:1vh ;
+  text-align: center;
+}
+#info_machine button{
+margin-left: 80%;
+margin-top: 2vh;
+}
+#btn_afficher{
+  height: 5vh;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.avenir article{
+  position: absolute;
+width: 509px;
+height: 546px;
+left: 340px;
+top: 190px;
+background-color: white;
+border: 2px solid #A9A1A1;
+box-sizing: border-box;
+box-shadow: 13px 10px 14px rgba(0, 0, 0, 0.25);
+}
+.entete_avenir{
+  position: absolute;
+width: 250px;
+height: 37px;
+left: 49px;
+top: 17px;
+
+background: #E4E3E3;
+
+box-shadow: 12px 10px 6px rgba(0, 0, 0, 0.25);
+}
+#liste_des_attestation{
+  width: 100%;
+}
+
+#entete_attestation{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4vh;
+  margin-bottom: 3vh;
+  padding: .2vw;
+  
+width: 19vw;
+height: 6vh;
+/* left: 20%; */
+top: 17px;
+
+background: white;
+border: 2px solid #9C9292;
+box-sizing: border-box;
+box-shadow: 12px 10px 6px rgba(0, 0, 0, 0.25);
+}
+
+#liste_des_attestation .table{
+  margin-top: 5vh;
+}
+#entete_message{
+  width: 15vw;
+  height: 5vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  background: white;
+border: 2px solid #9C9292;
+box-sizing: border-box;
+box-shadow: 12px 10px 6px rgba(0, 0, 0, 0.25);
+
+margin-left: 5vw;
+}

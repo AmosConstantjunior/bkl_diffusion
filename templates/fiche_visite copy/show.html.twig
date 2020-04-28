@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FicheVisite{% endblock %}
+
+{% block body %}
+
+    <h1>FicheVisite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fiche_visite.id }}</td>
+            </tr>
+            <tr>
+                <th>DateIntervention</th>
+                <td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : '' }}</td>
+            </tr>
+          
+            <tr>
+                <th>Contact</th>
+                {% for contact in fiche_visite.lier %}
+                    
+                <td>{{ contact.NomContact }}</td>
+                <td>{{ contact.Poste }}</td>
+                {% endfor %}
+            </tr>
+             <tr>
+                <th>Machine</th>
+                {% for machine in fiche_visite.machines %}
+                    
+                <td>{{machine.Numserie}}</td>
+                {% endfor %}
+                
+            </tr>
+            
+            <tr>
+                <th>MontantHt</th>
+                <td>{{ fiche_visite.MontantHt }}</td>
+            </tr>
+             <tr>
+                <th>Technicien</th>
+                <td>{{ fiche_visite.Techniciens }}</td>
+            </tr>
+            <tr>
+                <th>MontantConsommable</th>
+                <td>{{ fiche_visite.MontantConsommable }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ fiche_visite.Commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('fiche_visite_index') }}">back to list</a>
+
+    <a href="{{ path('fiche_visite_edit', {'id': fiche_visite.id}) }}">edit</a>
+
+    {{ include('fiche_visite/_delete_form.html.twig') }}
+   
+   	<div class="modal fade" name="exampleModalLong" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}

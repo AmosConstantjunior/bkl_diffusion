@@ -13,6 +13,7 @@ class CriteresType extends AbstractType
     {
         $builder
             ->add('Intituler')
+            
         ;
     }
 

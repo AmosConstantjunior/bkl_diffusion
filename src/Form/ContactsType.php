@@ -19,7 +19,7 @@ class ContactsType extends AbstractType
             ->add('EmailContact')
             ->add('atelier')
             ->add('clients')
-            ->add('ficheVisites')
+            // ->add('ficheVisites')
         ;
     }
 

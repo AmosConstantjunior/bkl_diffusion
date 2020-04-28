@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Machine;
 use App\Form\MachineType;
 use App\Repository\MachineRepository;
+use App\Repository\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +19,10 @@ class MachineController extends AbstractController
     /**
      * @Route("/", name="machine_index", methods={"GET"})
      */
-    public function index(MachineRepository $machineRepository): Response
+    public function index(MachineRepository $machineRepository, ModelRepository $modelRepository): Response
     {
+        $model= $modelRepository->findAll();
+        //  dd($model);
         return $this->render('machine/index.html.twig', [
             'machines' => $machineRepository->findAll(),
         ]);
@@ -53,6 +56,7 @@ class MachineController extends AbstractController
      */
     public function show(Machine $machine): Response
     {
+        
         return $this->render('machine/show.html.twig', [
             'machine' => $machine,
         ]);

@@ -28,13 +28,13 @@ class Machine
      */
     private $VersionEprom;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $ProchaineIntervention;
+    // /**
+    //  * @ORM\Column(type="date")
+    //  */
+    // private $ProchaineIntervention;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FicheVisite", inversedBy="machines")
+     * @ORM\ManyToMany(targetEntity="App\Entity\FicheVisite", mappedBy="machines")
      */
     private $technique;
 
@@ -82,17 +82,17 @@ class Machine
         return $this;
     }
 
-    public function getProchaineIntervention(): ?\DateTimeInterface
-    {
-        return $this->ProchaineIntervention;
-    }
+    // public function getProchaineIntervention(): ?\DateTimeInterface
+    // {
+    //     return $this->ProchaineIntervention;
+    // }
 
-    public function setProchaineIntervention(\DateTimeInterface $ProchaineIntervention): self
-    {
-        $this->ProchaineIntervention = $ProchaineIntervention;
+    // public function setProchaineIntervention(\DateTimeInterface $ProchaineIntervention): self
+    // {
+    //     $this->ProchaineIntervention = $ProchaineIntervention;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection|FicheVisite[]

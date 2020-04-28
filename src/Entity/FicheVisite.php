@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FicheVisiteRepository")
@@ -20,21 +21,25 @@ class FicheVisite
 
     /**
      * @ORM\Column(type="date")
+     * 
      */
     private $DateIntervention;
 
     /**
      * @ORM\Column(type="float")
+     * 
      */
     private $MontantHt;
 
     /**
      * @ORM\Column(type="float")
+     * 
      */
     private $MontantConsommable;
 
     /**
      * @ORM\Column(type="text")
+     * 
      */
     private $Commentaire;
 
@@ -49,7 +54,8 @@ class FicheVisite
     private $techniciens;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Machine", mappedBy="technique")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Machine", inversedBy="technique")
+     * @Assert\NotBlank()
      */
     private $machines;
 
@@ -57,6 +63,37 @@ class FicheVisite
      * @ORM\ManyToOne(targetEntity="App\Entity\Atelier", inversedBy="ficher")
      */
     private $atelier;
+
+    
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $ValiseCNOMO;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $cuproBrasage;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $BesoinFormation;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $SoudageMonoFace;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $LigneElectrice;
+
+   
+
+   
 
     public function __construct()
     {
@@ -197,6 +234,74 @@ class FicheVisite
 
     public function __toString()
     {
-        return $this->DateIntervention;
+        
+   
+        return $this->Commentaire;
     }
+
+  
+
+    public function getValiseCNOMO(): ?bool
+    {
+        return $this->ValiseCNOMO;
+    }
+
+    public function setValiseCNOMO(bool $ValiseCNOMO): self
+    {
+        $this->ValiseCNOMO = $ValiseCNOMO;
+
+        return $this;
+    }
+
+    public function getCuproBrasage(): ?bool
+    {
+        return $this->cuproBrasage;
+    }
+
+    public function setCuproBrasage(bool $cuproBrasage): self
+    {
+        $this->cuproBrasage = $cuproBrasage;
+
+        return $this;
+    }
+
+    public function getBesoinFormation(): ?bool
+    {
+        return $this->BesoinFormation;
+    }
+
+    public function setBesoinFormation(bool $BesoinFormation): self
+    {
+        $this->BesoinFormation = $BesoinFormation;
+
+        return $this;
+    }
+
+    public function getSoudageMonoFace(): ?bool
+    {
+        return $this->SoudageMonoFace;
+    }
+
+    public function setSoudageMonoFace(bool $SoudageMonoFace): self
+    {
+        $this->SoudageMonoFace = $SoudageMonoFace;
+
+        return $this;
+    }
+
+    public function getLigneElectrice(): ?int
+    {
+        return $this->LigneElectrice;
+    }
+
+    public function setLigneElectrice(int $LigneElectrice): self
+    {
+        $this->LigneElectrice = $LigneElectrice;
+
+        return $this;
+    }
+
+   
+
+    
 }

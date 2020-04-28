@@ -3,17 +3,17 @@
 {% block title %}Atelier index{% endblock %}
 
 {% block body %}
-    <h1>Atelier index</h1>
-
-    <table id="liste" class="table table-striped">
+    <h1 class="mt-4" style="text-align:center">Les ateliers</h1>
+<a class="btn btn-info float-right mr-4 mb-4" href="{{ path('atelier_new') }}">Create new</a>
+    <table  class="container-fluid table w-100 h-75 table-striped overflow-auto">
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">AdresseAtelier</th>
-                <th scope="col">EmailAdresse</th>
-                <th scope="col">NomCarrosserie</th>
+                <th scope="col">Adressede l'atelier</th>
+                <th scope="col">Adresse e-mail</th>
+                <th scope="col">Nom de la carrosserie</th>
                 <th scope="col">Certifier</th>
-                <th scope="col">AttesterCQS</th>
+                <th scope="col">Attester CQS</th>
                 <th scope="col">actions</th>
             </tr>
         </thead>
@@ -24,11 +24,11 @@
                 <td>{{ atelier.AdresseAtelier }}</td>
                 <td>{{ atelier.EmailAdresse }}</td>
                 <td>{{ atelier.NomCarrosserie }}</td>
-                <td>{{ atelier.certifier ? 'Yes' : 'No' }}</td>
-                <td>{{ atelier.attesterCQS ? 'Yes' : 'No' }}</td>
+                <td>{{ atelier.certifier ? 'Oui' : 'Non' }}</td>
+                <td>{{ atelier.attesterCQS ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('atelier_show', {'id': atelier.id}) }}">show</a>
-                    <a href="{{ path('atelier_edit', {'id': atelier.id}) }}">edit</a>
+                    {# <a href="{{ path('atelier_edit', {'id': atelier.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('atelier_new') }}">Create new</a>
+    
 {% endblock %}

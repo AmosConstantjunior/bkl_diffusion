@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block body %}
-
 	<a id="sorti" href="{{ path('fiche_visite_index') }}">
 		<svg width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M26.5469 13.3125C26.5469 13.1406 26.4063 13 26.2344 13L23.6563 13.0117L19.7734 17.6406L15.8945 13.0156L13.3125 13.0039C13.1406 13.0039 13 13.1406 13 13.3164C13 13.3906 13.0273 13.4609 13.0742 13.5195L18.1563 19.5742L13.0742 25.625C13.027 25.6823 13.0008 25.7539 13 25.8281C13 26 13.1406 26.1406 13.3125 26.1406L15.8945 26.1289L19.7734 21.5L23.6523 26.125L26.2305 26.1367C26.4023 26.1367 26.543 26 26.543 25.8242C26.543 25.75 26.5156 25.6797 26.4688 25.6211L21.3945 19.5703L26.4766 13.5156C26.5234 13.4609 26.5469 13.3867 26.5469 13.3125Z" fill="#EB1616"/>
@@ -13,11 +12,13 @@
 	</a>
 	<h1 id="new">Nouvelle fiche de maintenance
 	</h1>
-	<button id="mach"class="btn btn-primary">
+	<button id="mach" class="btn btn-primary">
 
-		<a  href="{{ path('machine_index')}}">Nouvelle machine</a>
+		<a href="{{ path('machine_index')}}">Nouvelle machine</a>
 	</button>
 	{{ include('fiche_visite/_form.html.twig') }}
 
-
+{% endblock %}
+{% block javascripts %}
+  
 {% endblock %}

@@ -16,18 +16,20 @@
 		<ul>
 			<li><a href=""><svg width="40" height="35" viewbox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M20 3.39111C17.2727 3.39111 15.142 4.32725 13.608 6.19954C12.0739 8.07182 11.3068 10.4652 11.3068 13.3796C11.2879 17.0005 12.5379 19.8707 15.0568 21.9903C15.3788 22.2729 15.4924 22.635 15.3977 23.0766L14.7443 24.3483C14.536 24.7722 14.2282 25.1034 13.821 25.3419C13.4138 25.5803 12.5568 25.9203 11.25 26.3619C11.1932 26.3796 9.99527 26.7417 7.65625 27.4482C5.31723 28.1547 4.07197 28.5433 3.92045 28.6139C2.32955 29.2321 1.28788 29.8769 0.795455 30.548C0.265152 31.6608 0 34.4781 0 38.9998H40C40 34.4781 39.7348 31.6608 39.2045 30.548C38.7121 29.8769 37.6705 29.2321 36.0795 28.6139C35.928 28.5433 34.6828 28.1547 32.3438 27.4482C30.0047 26.7417 28.8068 26.3796 28.75 26.3619C27.4432 25.9203 26.5862 25.5803 26.179 25.3419C25.7718 25.1034 25.464 24.7722 25.2557 24.3483L24.6023 23.0766C24.5076 22.635 24.6212 22.2729 24.9432 21.9903C27.4621 19.8707 28.7121 17.0005 28.6932 13.3796C28.6932 10.4652 27.9261 8.07182 26.392 6.19954C24.858 4.32725 22.7273 3.39111 20 3.39111Z" fill="#C4C4C4"/></g><defs><clipPath id="clip0"><rect width="40" height="39" fill="white"/></clipPath></defs></svg></a></li>
 
-			<li><a href=""><svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.3332 18.9582V16.0415H10.2082V11.6665L2.9165 17.4998L10.2082 23.3332V18.9582H23.3332Z" fill="#C4C4C4"/><path d="M29.1667 4.375H16.0417C14.4331 4.375 13.125 5.68313 13.125 7.29167V13.125H16.0417V7.29167H29.1667V27.7083H16.0417V21.875H13.125V27.7083C13.125 29.3169 14.4331 30.625 16.0417 30.625H29.1667C30.7752 30.625 32.0833 29.3169 32.0833 27.7083V7.29167C32.0833 5.68313 30.7752 4.375 29.1667 4.375Z" fill="#C4C4C4"/></svg></a></li>
+			<li><a href="{{path('app_logout')}}"><svg width="35" height="35" viewbox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.3332 18.9582V16.0415H10.2082V11.6665L2.9165 17.4998L10.2082 23.3332V18.9582H23.3332Z" fill="#C4C4C4"/><path d="M29.1667 4.375H16.0417C14.4331 4.375 13.125 5.68313 13.125 7.29167V13.125H16.0417V7.29167H29.1667V27.7083H16.0417V21.875H13.125V27.7083C13.125 29.3169 14.4331 30.625 16.0417 30.625H29.1667C30.7752 30.625 32.0833 29.3169 32.0833 27.7083V7.29167C32.0833 5.68313 30.7752 4.375 29.1667 4.375Z" fill="#C4C4C4"/></svg></a></li>
 		</ul>
 	</nav>
+<div class="mt-4" id="entete_message">
 
 	<h3>Messages</h3>
-<section class="container-fluid">
-<button class="btn"><a href=""><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+</div>
+<section class="container-fluid mt-4">
+<button class="btn" data-toggle="modal" data-target="#exampleModal"><a href=""  data-toggle="modal" data-target="#exampleModal"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M21.6663 11.6668H18.333V18.3335H11.6663V21.6668H18.333V28.3335H21.6663V21.6668H28.333V18.3335H21.6663V11.6668ZM19.9997 3.3335C10.7997 3.3335 3.33301 10.8002 3.33301 20.0002C3.33301 29.2002 10.7997 36.6668 19.9997 36.6668C29.1997 36.6668 36.6663 29.2002 36.6663 20.0002C36.6663 10.8002 29.1997 3.3335 19.9997 3.3335ZM19.9997 33.3335C12.6497 33.3335 6.66634 27.3502 6.66634 20.0002C6.66634 12.6502 12.6497 6.66683 19.9997 6.66683C27.3497 6.66683 33.333 12.6502 33.333 20.0002C33.333 27.3502 27.3497 33.3335 19.9997 33.3335Z" fill="black"/>
 </svg>
- Nouveau message</a></button>
+ Nouveau message </a></button>
 
-	<table class="table table-striped">
+	<table class="table table-striped mt-2">
 		<thead>
 			<tr>
 				<th scope="col">Nom</th>
@@ -43,4 +45,35 @@
 	</table>
 </section>
 
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

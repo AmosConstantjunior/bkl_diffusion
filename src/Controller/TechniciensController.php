@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Techniciens;
+use App\Entity\User;
 use App\Form\Techniciens1Type;
 use App\Repository\TechniciensRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,9 +45,9 @@ class TechniciensController extends AbstractController
             )
             
         );
-        $technicien->setRoles[
-            'ROLE_TECHNICIEN'
-        ];
+        $technicien->setRoles(["ROLE_ADMIN"]);
+            
+      
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($technicien);
             $entityManager->flush();

@@ -1,70 +1,279 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FicheVisite{% endblock %}
+{% block title %}FicheVisite
+{% endblock %}
 
 {% block body %}
+	<a class="btn btn-secondary ml-2 mr-3 mt-3" href="{{ path('fiche_visite_index') }}">Retour</a>
+	<h1 style="text-align:center">Fiche de maintenance</h1>
 
-    <h1>FicheVisite</h1>
+	<div class="container-fluid row col-md-11">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ fiche_visite.id }}</td>
-            </tr>
-            <tr>
-                <th>DateIntervention</th>
-                <td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : '' }}</td>
-            </tr>
-          
-            <tr>
-                <th>Contact</th>
-                {% for contact in fiche_visite.lier %}
-                    
-                <td>{{ contact.NomContact }}</td>
-                <td>{{ contact.Poste }}</td>
-                {% endfor %}
-            </tr>
-             <tr>
-                <th>Machine</th>
-                {% for tech in fiche_visite.machines %}
-                    
-               <pre>
-                   {{ dump(tech) }}
-               </pre>
-               
-                {% endfor %}
-                <pre>
-                    {{ dump(fiche_visite.machines) }}
-                </pre>
-                
-            </tr>
-            
-            <tr>
-                <th>MontantHt</th>
-                <td>{{ fiche_visite.MontantHt }}</td>
-            </tr>
-             <tr>
-                <th>Technicien</th>
-                <td>{{ fiche_visite.Techniciens }}</td>
-            </tr>
-            <tr>
-                <th>MontantConsommable</th>
-                <td>{{ fiche_visite.MontantConsommable }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ fiche_visite.Commentaire }}</td>
-            </tr>
-        </tbody>
-    </table>
+		<table class="table col-md-8">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ fiche_visite.id }}</td>
+				</tr>
+				<tr>
+					<th>Date d'intervention</th>
+					<td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('d-m-Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Montant Ht</th>
+					<td>{{ fiche_visite.MontantHt }} €</td>
+				</tr>
+				<tr>
+					<th>Montant consommable</th>
+					<td>{{ fiche_visite.MontantConsommable }} €</td>
+				</tr>
+				<tr>
+					<th>Commentaire</th>
+					<td>{{ fiche_visite.Commentaire }}</td>
+				</tr>
+				<tr>
+					<th>
+						Presence valise CNOMO</th>
+					<td>{{ fiche_visite.ValiseCNOMO ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Utilisation du Cupro Brasage</th>
+					<td>{{ fiche_visite.cuproBrasage ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Besoin de formation</th>
+					<td>{{ fiche_visite.BesoinFormation ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Soudage Mono-Face</th>
+					<td>{{ fiche_visite.SoudageMonoFace ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Ligne éléctrique</th>
+					<td>{{ fiche_visite.LigneElectrice }} %</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="col-md-3 ml-3">
+			<a href="" class="btn btn-secondary   " data-toggle="modal" data-target="#exampleModalLong">Afficher</a>
+			<a class="btn btn-secondary " href="{{ path('fiche_visite_edit', {'id': fiche_visite.id}) }}">Editer</a>
+			
+		</div>
+	</div>
+{{  include('fiche_visite/_delete_form.html.twig') }}
+
+	<!-- Button trigger modal -->
 
 
+	<!-- Modal -->
+	<div class="modal fade bd-example-modal-xl" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content ">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Fiche de maintenance</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="generale">
+						<article class="row">
+							<div class="col-md-4">
+								<img src="{{asset('assets/img/CQS.png')}}" alt="">
+							</div>
+							<h1 class="col-md-5">Rapport de Maintenance</h1>
+						</article>
+						<section class="container">
+							<div class="form-group row mt-4">
+								<h5 class="col-md-4">Contact : M. Bernard KLEIN</h5>
+								<h5 class="col-md-4">Tél 0611 62 72 66</h5>
+								<h5 class="col-md-4">maintenance@cqsoudage.com</h5>
+							</div>
+							<h4>STATION DE SOUDAGE PAR RÉSISTANCE</h4>
 
-    <a href="{{ path('fiche_visite_index') }}">back to list</a>
+							<div class="form-group row mt-5 border">
+								<table class="table col-md-6">
+									<tbody>
 
-    <a href="{{ path('fiche_visite_edit', {'id': fiche_visite.id}) }}">edit</a>
+										<tr>
+											<th>Marque</th>
+											<td>Saitek</td>
+										</tr>
+										{% for machine in fiche_visite.machines %}
+											{% for modele in machine.model %}{% endfor %}
+											<tr>
+												<th>Désignation Type</th>
+												<td>Honda</td>
+											</tr>
+											<tr>
+												<th>N° série</th>
+												<td>{{machine}}</td>
+											</tr>
+											<tr>
+												<th>Version Eprom</th>
+												<td>{{machine.VersionEprom}}</td>
+											</tr>
+										{% endfor %}
+										<tr>
+											<th>Technicien</th>
+											<td>{{fiche_visite.techniciens}}</td>
+										</tr>
+										<tr>
+											<th>Date d’intervention</th>
+											<td>{{fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('d-m-Y')}}</td>
+										</tr>
 
-    {{ include('fiche_visite/_delete_form.html.twig') }}
-   
+									</tbody>
+								</table>
+								<div id="signature" class="col-md-6"></div>
+							</div>
+							<h4>VALIDATION DU DEVIS</h4>
+							<div class="form-group  mt-2">
+								<table id="devis" class="table col-md-12">
+									<tbody class="border">
+										<tr>
+											<th>Responsable SAV</th>
+											<td>MR</td>
+										</tr>
+										<tr>
+											<th>Responsable atelier</th>
+											{% for contact in fiche_visite.lier %}
+												<td>{{contact.NomContact}}
+													{{contact.PrenomContact}}</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<th>Fax atelier / email</th>
+											{% for donnees in fiche_visite.atelier %}
+												<pre>
+													{{ dump(donnees) }}
+												</pre>
+											{% endfor %}
+											
+										</tr>
+										<tr>
+											<th>Commande EBP</th>
+											<td></td>
+										</tr>
+										<tr>
+											<th>Montant HT</th>
+											<td>{{fiche_visite.MontantHt}}
+												€</td>
+										</tr>
+										<tr>
+											<th>Montant consommable</th>
+											<td>{{fiche_visite.MontantConsommable}}
+												€</td>
+										</tr>
+										<tr>
+											<th>Commentaires</th>
+											<td>{{fiche_visite.commentaire}}</td>
+										</tr>
+										<tr>
+											<th>Prochaine intervention</th>
+											<td></td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+							<h4>NOTATION CQS / CAPACITÉS DE SOUDAGE DE L’ATELIER</h4>
+
+							<div class="notation row">
+								<div class="col-md-6">
+									<h2>Attestation CQS :  %</h2>
+									<h5>Mention :</h5>
+									{# {% if <= 49 %}
+																												<div class="alert alert-danger" role="alert">
+																													Risque très important de non soudure
+																												</div>
+																											{% elseif == 50 && <= 79 %}
+																												<div class="alert alert-danger" role="alert">
+																													Risque important de non soudure
+																												</div>
+																											{% elseif >= 80 %}
+																												<div class="alert alert-success" role="alert">
+																													Bonne maitrise du process de soudage
+																												</div>
+																											{% endif %} #}
+
+								</div>
+								<div class="col-md-6"></div>
+							</div>
+							<div class="form-group   row">
+								<table class="table border col-md-6">
+									<tbody>
+										<tr>
+											<th class="border border-left-0">Présence de la valise CNOMO</th>
+											{% if fiche_visite.ValiseCNOMO == 1 %}
+												<td class="border border-right-0">OUI</td>
+											{% else %}
+												<td class="border border-right-0">NON</td>
+											{% endif %}
+										</tr>
+										<tr>
+											<th class="border border-left-0">Utilisation du cupro-brasage</th>
+											{% if fiche_visite.cuproBrasage == 1 %}
+												<td class="border border-right-0">OUI</td>
+											{% else %}
+												<td class="border border-right-0">NON</td>
+											{% endif %}
+										</tr>
+										<tr>
+											<th class="border border-left-0">Besoin de formation</th>
+											{% if fiche_visite.BesoinFormation == 1 %}
+
+												<td class="border border-right-0">OUI</td>
+											{% else %}
+												<td class="border border-right-0">NON</td>
+											{% endif %}
+										</tr>
+									</tbody>
+								</table>
+								<table class="table border col-md-6">
+									<tbody>
+										<tr>
+											<th class="border border-left-0">Soudage mono-face</th>
+											{% if fiche_visite.SoudageMonoFace == 1 %}
+
+												<td class="border border-right-0">OUI</td>
+											{% else %}
+												<td class="border border-right-0">NON</td>
+											{% endif %}
+										</tr>
+										<tr>
+											<th class="border border-left-0">___/___/___</th>
+											<td class="border border-right-0">3 Phases / V</td>
+										</tr>
+										<tr>
+											<th class="border border-left-0">Qualité de la ligne électrique</th>
+											<td class="border border-right-0">
+												{{fiche_visite.LigneElectrice}}
+												%</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<section class="form-group row">
+
+								<div id="observations" class="col-md-6"></div>
+								<div id="observations" class="col-md-6"></div>
+							</section>
+							<h5>Sté BKL - Route du Mourle - 64800 MONTAUT (France) - Tél 0559 71 97 37 / Fax 0559 71 98 24 -</h5>
+							<div class="form-group row">
+								<h6 class="col-md-4">e-mail : maintenance@cqsoudage.com</h6>
+								<span class="col-md-8">Sarl au capital de 20 000 € - RCS 451 459 424 - Siren 451 459 424 000 11 – APE 511R - TVA FR70451459424</span>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Exporter</button>
+                    {{  include('fiche_visite/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

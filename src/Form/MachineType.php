@@ -14,8 +14,8 @@ class MachineType extends AbstractType
         $builder
             ->add('NumSerie')
             ->add('VersionEprom')
-            ->add('ProchaineIntervention')
-            ->add('technique')
+            // ->add('ProchaineIntervention')
+            // ->add('technique')
             ->add('atelier')
             ->add('model')
         ;

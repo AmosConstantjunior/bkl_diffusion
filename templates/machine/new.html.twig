@@ -3,9 +3,9 @@
 {% block title %}New Machine{% endblock %}
 
 {% block body %}
-    <h1>Create new Machine</h1>
+    <h2 class="mt-3 mb-4" style="text-align:center">Ajouter une nouvelle machine</h2>
 
     {{ include('machine/_form.html.twig') }}
 
-    <a href="{{ path('machine_index') }}">back to list</a>
+    <a class="btn btn-info  mr-4 float-right" href="{{ path('machine_index') }}">Retour</a>
 {% endblock %}

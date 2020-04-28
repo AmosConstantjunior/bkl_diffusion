@@ -36,14 +36,15 @@
 				<th scope="col">Adresse postale</th>
 				<th scope="col">Numero de Siret</th>
 				<th scope="col">Téléphone du Client</th>
-				<th scope="col"> Nom des Ateliers</th>
                 
-				<th scope="col">Note CQS</th>
+				
 				<th scope="col">Action</th>
 			</tr>
 		</thead>
+		
 		<tbody>
 			{% for client in clients %}
+				
 				<tr>
 					<th scope="row">{{ client.id}}</th>
 					<td>{{ client.NomClient }}</td>
@@ -53,19 +54,7 @@
 					<td>{{ client.AdresseClient }}</td>
 					<td>{{ client.NumSiret }}</td>
 					<td>{{ client.TelClient }}</td>
-					{% for atelier in client.ateliers %}
-						<td>{{ atelier.NomCarrosserie}}</td>
-						{% for attestation in atelier.attester  %}
-							<td>
-								{{ attestation.TotalPoints}}
-								%</td>
-						{% else %}
-							<td>-·-</td>
-						{% endfor %}
-                        {% else %}
-                            <td>-·-</td> 
-                            <td>-·-</td>
-					{% endfor %}
+					
 					<td>
 						<a href="{{ path('clients_show', {'id': client.id}) }}">
 							<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,6 +64,7 @@
 						</a>
 					</td>
 				</tr>
+					
 			{% else %}
 				<tr>
 					<td colspan="9">no records found</td>

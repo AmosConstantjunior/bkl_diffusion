@@ -1,20 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ParametreController!{% endblock %}
+{% block title %}Hello ParametreController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1 class="mt-4 mb-4 " style="text-align:center">Paramètre</h1>
+	<section class="container">
+		<div class="form-group">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+			{# <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+				Machines
+			</button> #}
+			<h5>
+			Machines
+			</h5>
+			<a href="" class="form-control" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Machines</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Stage/BKL_Diffusion/src/Controller/ParametreController.php'|file_link(0) }}">src/Controller/ParametreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Stage/BKL_Diffusion/templates/parametre/index.html.twig'|file_link(0) }}">templates/parametre/index.html.twig</a></code></li>
-    </ul>
-</div>
+			<div class="collapse" id="collapseExample">
+				<div class="card card-body ">
+
+					<a href="{{path('machine_index')}}">
+						<p>Afficher la liste des marques de machines et leur models</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		{# <div class="form-group">
+
+
+			<a class="form-control" href=""  data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+				Button with data-target
+			</a>
+
+			<div class="collapse" id="collapseExample2">
+				<div class="card card-body">
+					Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+
+
+			<a class="form-control" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+				Button with data-target
+			</a>
+
+			<div class="collapse" id="collapseExample3">
+				<div class="card card-body">
+					Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+				</div>
+			</div>
+		</div> #}
+	</section>
 {% endblock %}

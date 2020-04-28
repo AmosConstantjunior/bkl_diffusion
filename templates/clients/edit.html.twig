@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-		<h2>Edit Clients</h2>
-<a href="{{ path('clients_show', {'id': client.id}) }}">back to list</a>
+		<h2 id="new">Editer le client</h2>
+<a href="{{ path('clients_show', {'id': client.id}) }}">Retour</a>
 
 
 				{{ include('clients/_form.html.twig', {'button_label': 'Update'}) }}

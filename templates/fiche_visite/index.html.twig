@@ -4,76 +4,81 @@
 {% endblock %}
 
 {% block body %}
-
 	<div id="entete_historique">
 
-		<h3> <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 4C12.0163 4 9.15483 5.18526 7.04505 7.29505C4.93526 9.40483 3.75 12.2663 3.75 15.25H0L4.8625 20.1125L4.95 20.2875L10 15.25H6.25C6.25 10.4125 10.1625 6.5 15 6.5C19.8375 6.5 23.75 10.4125 23.75 15.25C23.75 20.0875 19.8375 24 15 24C12.5875 24 10.4 23.0125 8.825 21.425L7.05 23.2C8.09177 24.2475 9.33061 25.0784 10.6951 25.6448C12.0595 26.2112 13.5226 26.5018 15 26.5C17.9837 26.5 20.8452 25.3147 22.955 23.205C25.0647 21.0952 26.25 18.2337 26.25 15.25C26.25 12.2663 25.0647 9.40483 22.955 7.29505C20.8452 5.18526 17.9837 4 15 4ZM13.75 10.25V16.5L19.1 19.675L20 18.1625L15.625 15.5625V10.25H13.75Z" fill="black"/>
-</svg>
- Historique de fiche visite</h3>
+		<h3>
+			<svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M15 4C12.0163 4 9.15483 5.18526 7.04505 7.29505C4.93526 9.40483 3.75 12.2663 3.75 15.25H0L4.8625 20.1125L4.95 20.2875L10 15.25H6.25C6.25 10.4125 10.1625 6.5 15 6.5C19.8375 6.5 23.75 10.4125 23.75 15.25C23.75 20.0875 19.8375 24 15 24C12.5875 24 10.4 23.0125 8.825 21.425L7.05 23.2C8.09177 24.2475 9.33061 25.0784 10.6951 25.6448C12.0595 26.2112 13.5226 26.5018 15 26.5C17.9837 26.5 20.8452 25.3147 22.955 23.205C25.0647 21.0952 26.25 18.2337 26.25 15.25C26.25 12.2663 25.0647 9.40483 22.955 7.29505C20.8452 5.18526 17.9837 4 15 4ZM13.75 10.25V16.5L19.1 19.675L20 18.1625L15.625 15.5625V10.25H13.75Z" fill="black"/>
+			</svg>
+			Historique des fiches de maintenance</h3>
 	</div>
+
 	{# lien de creation de fiche de maintenance qui se trouve déja dans le aside #}
 	{# lien  <div id="lien">
+		
+				<a href="{{ path('fiche_visite_new') }}">Create new</a>
+			</div> #}
 
-		<a href="{{ path('fiche_visite_new') }}">Create new</a>
-	</div> #}
-
-	<table id="liste" class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Id</th>
-				<th scope="col">Date  Intervention</th>
-				<th scope="col">Atelier</th>
-				<th scope="col">Machine</th>
-				<th scope="col">Nom du technicien</th>
-				<th scope="col">Nom du Contact</th>
-				<th scope="col">actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for fiche_visite in fiche_visites %}
+	<section class="liste_des_historique container-fluid">
+		<table id="listeH" class="table table-striped">
+			<thead>
 				<tr>
-					<th scope="row">{{ fiche_visite.id }}</th>
-					<td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : '' }}</td>
-					{% for atelie in fiche_visite.atelier %}
+					<th scope="col">Id</th>
+					<th scope="col">Date d'intervention</th>
+					<th scope="col">Atelier</th>
+					<th scope="col">Machine</th>
+					<th scope="col">Nom du technicien</th>
+					<th scope="col">Nom du Contact</th>
+					<th scope="col">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for fiche_visite in fiche_visites %}
+					<tr>
+							<th scope="row">{{ fiche_visite.id }}</th>
+						<td>{{ fiche_visite.DateIntervention ? fiche_visite.DateIntervention|date('Y-m-d') : '' }}</td>
+						
+						
+						 <td>{{fiche_visite.atelier}}</td>  
+						 {# <td>--·--</td>   #}
+						{% for machine in fiche_visite.machines %}
+						
+							<td>
+								{{ machine.NumSerie}}
+								
+							</td>
 
-						<td>{{ atelie.NomCarrosserie }}</td>
-					{% else %}
-						<td>-·-</td>
-					{% endfor %}
-					{% for machine in fiche_visite.machines %}
+
+						{% else %}
+							<td>-·-</td>
+
+						{% endfor %}
+
+
+						<td>{{ fiche_visite.Techniciens}}</td>
+						{% for contact in fiche_visite.lier %}
+
+							<td>{{ contact.NomContact}}</td>
+						{% else %}
+							<td>-·-</td>
+						{% endfor %}
+
 						<td>
-							<ul>
-								<li>{{machine.ProchaineIntervention ? machine.ProchaineIntervention|date('Y-m-d') : '' }}</li>
-							</ul>
+							<a href="{{ path('fiche_visite_show', {'id': fiche_visite.id}) }}"><svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15 11.25C14.0075 11.2566 13.0574 11.6537 12.3556 12.3556C11.6537 13.0574 11.2566 14.0075 11.25 15C11.25 17.0525 12.9475 18.75 15 18.75C17.0513 18.75 18.75 17.0525 18.75 15C18.75 12.9487 17.0513 11.25 15 11.25Z" fill="black"/>
+								<path d="M15.0001 6.25C5.45887 6.25 2.59137 14.5213 2.56512 14.605L2.43262 15L2.56387 15.395C2.59137 15.4787 5.45887 23.75 15.0001 23.75C24.5414 23.75 27.4089 15.4787 27.4351 15.395L27.5676 15L27.4364 14.605C27.4089 14.5213 24.5414 6.25 15.0001 6.25ZM15.0001 21.25C8.31137 21.25 5.72012 16.4425 5.09262 15C5.72262 13.5525 8.31512 8.75 15.0001 8.75C21.6889 8.75 24.2801 13.5575 24.9076 15C24.2776 16.4475 21.6851 21.25 15.0001 21.25V21.25Z" fill="black"/>
+							</svg></a>
+							
 						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="11">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-
-					{% else %}
-						<td>-·-</td>
-
-					{% endfor %}
-
-
-					<td>{{ fiche_visite.Techniciens}}</td>
-					{% for contact in fiche_visite.lier %}
-
-						<td>{{ contact.NomContact}}</td>
-					{% endfor %}
-
-
-					<td>
-						<a href="{{ path('fiche_visite_show', {'id': fiche_visite.id}) }}">show</a>
-
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="6">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-
+		{# <a href="{{ path('fiche_visite_new') }}">Create new</a> #}
+	</section>
 {% endblock %}
